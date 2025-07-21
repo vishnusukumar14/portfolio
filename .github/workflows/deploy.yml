@@ -64,11 +64,22 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Download GitHub Pages artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: .
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
 
   create-release:
     runs-on: ubuntu-latest
