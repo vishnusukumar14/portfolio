@@ -20,7 +20,7 @@ class HeroSectionWidget extends StatelessWidget {
         final double headlineSize = isMobile ? 34 : 64;
         final double subHeadSize = isMobile ? 14 : 22;
         final double bodySize = isMobile ? 13 : 18;
-        final double profileImgSize = isMobile ? 140 : 300;
+        final double profileImgSize = isMobile ? 120 : 280;
 
         Widget profileImage = Center(
           child: Container(
@@ -30,17 +30,15 @@ class HeroSectionWidget extends StatelessWidget {
               color: Color(0xFF720102),
               shape: BoxShape.circle,
               border: Border.all(
-                color: Color(0xFF6C5CE7).withValues(alpha: 0.18),
-                width: .5,
+                style: BorderStyle.solid,
+                color: Color(0xFF720102).withValues(alpha: 0.18),
+                width: .6,
               ),
             ),
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: ClipOval(
-                child: Image.asset(
-                  'assets/profile_image.jpg',
-                  fit: BoxFit.cover,
-                ),
+            child: ClipOval(
+              child: Image.asset(
+                'assets/1746809048028.jpeg',
+                fit: BoxFit.fitWidth,
               ),
             ),
           ),
