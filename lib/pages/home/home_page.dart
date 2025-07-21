@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/pages/home/sections/internships_section.dart';
 import 'package:portfolio_app/pages/home/sections/project_section.dart';
 
+import '../../core/analytics_service.dart';
 import '../../widgets/contact_section_widget.dart';
 import '../../widgets/nav_bar_widget.dart';
 import 'sections/about_section.dart';
@@ -22,6 +23,19 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
   final GlobalKey _projectsKey = GlobalKey();
   final GlobalKey _skillsKey = GlobalKey();
   final GlobalKey _contactKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    // Track user visit when page loads
+    _trackUserVisit();
+  }
+
+  Future<void> _trackUserVisit() async {
+    // Small delay to ensure page is fully loaded
+    await Future.delayed(Duration(milliseconds: 500));
+    await AnalyticsService.trackUserVisit();
+  }
 
   void _scrollToSection(GlobalKey key) {
     final context = key.currentContext;
@@ -46,8 +60,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
             floating: true,
             pinned: true,
             backgroundColor: Color(0xFF720102),
-
-            // purple accent
             elevation: 2,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
@@ -86,7 +98,9 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
             child: Container(
               key: _homeKey,
               child: HeroSectionWidget(
-                onGetInTouchPressed: () {},
+                onGetInTouchPressed: () {
+                  _scrollToSection(_contactKey);
+                },
                 onBrowseProjectPressed: () {
                   _scrollToSection(_projectsKey);
                 },
@@ -104,18 +118,14 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
               child: InternshipsSectionWidget(),
             ),
           ),
-          // // Projects Section
+          // Projects Section
           SliverToBoxAdapter(
             child: Container(
               key: _projectsKey,
               child: ProjectSectionWithNote(),
             ),
           ),
-          // // Skills Section
-          // SliverToBoxAdapter(
-          //   child: Container(key: _skillsKey, child: SkillsSectionWidget()),
-          // ),
-          // // Contact Section
+          // Contact Section
           SliverToBoxAdapter(
             child: Container(key: _contactKey, child: ContactSectionWidget()),
           ),
