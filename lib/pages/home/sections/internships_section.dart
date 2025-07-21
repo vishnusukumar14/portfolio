@@ -8,6 +8,9 @@ class InternshipsSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final bool isMobile = constraints.maxWidth < 700;
@@ -21,14 +24,18 @@ class InternshipsSectionWidget extends StatelessWidget {
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.work, size: iconSize),
+                  Icon(
+                    Icons.work,
+                    size: iconSize,
+                    color: theme.iconTheme.color,
+                  ),
                   SizedBox(height: headerSpacing),
                   Text(
                     "Internships",
-                    style: TextStyle(
+                    style: theme.textTheme.headlineMedium?.copyWith(
                       fontSize: headingSize,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: theme.colorScheme.onSurface,
                       letterSpacing: -1.5,
                     ),
                   ),
@@ -36,14 +43,18 @@ class InternshipsSectionWidget extends StatelessWidget {
               )
             : Row(
                 children: [
-                  Icon(Icons.work, size: iconSize),
+                  Icon(
+                    Icons.work,
+                    size: iconSize,
+                    color: theme.iconTheme.color,
+                  ),
                   SizedBox(width: headerSpacing),
                   Text(
                     "Internships",
-                    style: TextStyle(
+                    style: theme.textTheme.headlineMedium?.copyWith(
                       fontSize: headingSize,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: theme.colorScheme.onSurface,
                       letterSpacing: -1.5,
                     ),
                   ),
@@ -51,7 +62,7 @@ class InternshipsSectionWidget extends StatelessWidget {
               );
 
         return Container(
-          color: Colors.white,
+          color: theme.colorScheme.surface,
           width: double.infinity,
           padding: EdgeInsets.symmetric(
             vertical: verticalPadding,
@@ -68,7 +79,7 @@ class InternshipsSectionWidget extends StatelessWidget {
                   ListView.separated(
                     itemCount: Contents.experiences.length,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     separatorBuilder: (c, i) => SizedBox(height: cardsSpacing),
                     itemBuilder: (c, i) =>
                         InternshipCard(experience: Contents.experiences[i]),

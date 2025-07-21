@@ -12,12 +12,25 @@ class HeroSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use LayoutBuilder for responsive layout switching
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+    final isDark = theme.brightness == Brightness.dark;
+
+    // Fully theme-aware colors
+    final primaryTextColor = colorScheme.onSurface;
+    final secondaryTextColor = colorScheme.onSurface.withValues(alpha: 0.7);
+    final accentColor = colorScheme.primary;
+    final backgroundColor = colorScheme.surface;
+
+    // Profile image styling with theme awareness
+    final profileBgColor = isDark
+        ? colorScheme.surfaceContainerHighest
+        : colorScheme.primaryContainer;
+    final profileBorderColor = colorScheme.outline.withValues(alpha: 0.3);
+
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Is mobile? (you can tune this breakpoint)
-        // final bool isMobile = MediaQuery.of(context).size.width < 700;
-
         final bool isMobile = constraints.maxWidth < 700;
         final double headlineSize = isMobile ? 34 : 64;
         final double subHeadSize = isMobile ? 14 : 22;
@@ -29,69 +42,87 @@ class HeroSectionWidget extends StatelessWidget {
             width: profileImgSize,
             height: profileImgSize,
             decoration: BoxDecoration(
-              color: Color(0xFF720102),
+              color: profileBgColor,
               shape: BoxShape.circle,
-              border: Border.all(
-                style: BorderStyle.solid,
-                color: Color(0xFF720102).withValues(alpha: 0.18),
-                width: .6,
-              ),
+              border: Border.all(color: profileBorderColor, width: 1.0),
+              // Add subtle shadow for depth, respecting theme
+              boxShadow: [
+                BoxShadow(
+                  color: colorScheme.shadow.withValues(
+                    alpha: isDark ? 0.2 : 0.1,
+                  ),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
             child: ClipOval(
               child: Image.asset(
                 'assets/1746809048028.jpeg',
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover, // Better fit for profile images
+                errorBuilder: (context, error, stackTrace) {
+                  // Fallback with theme-aware placeholder
+                  return Container(
+                    color: colorScheme.surfaceContainerHighest,
+                    child: Icon(
+                      Icons.person,
+                      size: profileImgSize * 0.5,
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                  );
+                },
               ),
             ),
           ),
         );
 
-        // The main text content
         Widget textContent = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               "Hey, I'm Vishnu 👋",
-              style: TextStyle(
+              style: textTheme.titleMedium?.copyWith(
                 fontSize: subHeadSize,
                 fontWeight: FontWeight.w400,
-                color: Colors.black87,
+                color: primaryTextColor,
               ),
             ),
             SizedBox(height: isMobile ? 8 : 12),
-            // "Frontend Developer" with split styling
             RichText(
               text: TextSpan(
                 children: [
                   TextSpan(
                     text: "Software",
-                    style: TextStyle(
+                    style: textTheme.displaySmall?.copyWith(
                       fontFamily: 'Bitcount Prop Single',
-                      color: Colors.black,
                       fontSize: headlineSize,
                       fontWeight: FontWeight.bold,
+                      color: primaryTextColor,
                       letterSpacing: isMobile ? 0 : -2,
+                      height: 1.1,
                     ),
                   ),
                   TextSpan(
                     text: "\nDev",
-                    style: TextStyle(
+                    style: textTheme.displaySmall?.copyWith(
                       fontFamily: 'Bitcount Prop Single',
-                      color: Color(0xFFA70F0F),
                       fontSize: headlineSize,
                       fontWeight: FontWeight.bold,
+                      color: accentColor,
                       letterSpacing: isMobile ? 0 : -2,
+                      height: 1.1,
                     ),
                   ),
                   TextSpan(
                     text: "eloper",
-                    style: TextStyle(
+                    style: textTheme.displaySmall?.copyWith(
                       fontFamily: 'Bitcount Prop Single',
-                      color: Colors.black,
                       fontSize: headlineSize,
                       fontWeight: FontWeight.bold,
+                      color: primaryTextColor,
                       letterSpacing: isMobile ? 0 : -2,
+                      height: 1.1,
                     ),
                   ),
                 ],
@@ -100,36 +131,62 @@ class HeroSectionWidget extends StatelessWidget {
             SizedBox(height: isMobile ? 14 : 24),
             Text(
               "I love building apps that are fast, clean, and a joy to use—whether in Flutter or native Android—with a strong focus on smooth user experience and scalable architecture",
-              style: TextStyle(
+              style: textTheme.bodyLarge?.copyWith(
                 fontSize: bodySize,
-                color: Colors.grey[700],
-                height: 1.4,
+                color: secondaryTextColor,
+                height: 1.5,
                 fontWeight: FontWeight.w400,
               ),
             ),
             SizedBox(height: isMobile ? 18 : 32),
-            // Buttons
             Wrap(
               spacing: 12,
               runSpacing: 12,
               children: [
                 ElevatedButton(
                   onPressed: onGetInTouchPressed,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: isMobile ? 18 : 28,
-                      vertical: isMobile ? 13 : 18,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    elevation: 0,
-                  ),
+                  style:
+                      ElevatedButton.styleFrom(
+                        backgroundColor: colorScheme.primary,
+                        foregroundColor: colorScheme.onPrimary,
+                        disabledBackgroundColor: colorScheme.onSurface
+                            .withValues(alpha: 0.12),
+                        disabledForegroundColor: colorScheme.onSurface
+                            .withValues(alpha: 0.38),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isMobile ? 18 : 28,
+                          vertical: isMobile ? 13 : 18,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        elevation: isDark ? 1 : 2,
+                        shadowColor: colorScheme.shadow,
+                      ).copyWith(
+                        // Add hover and focus effects that respect theme
+                        overlayColor: WidgetStateProperty.resolveWith((states) {
+                          if (states.contains(WidgetState.hovered)) {
+                            return colorScheme.onPrimary.withValues(
+                              alpha: 0.08,
+                            );
+                          }
+                          if (states.contains(WidgetState.focused)) {
+                            return colorScheme.onPrimary.withValues(
+                              alpha: 0.12,
+                            );
+                          }
+                          if (states.contains(WidgetState.pressed)) {
+                            return colorScheme.onPrimary.withValues(
+                              alpha: 0.12,
+                            );
+                          }
+                          return null;
+                        }),
+                      ),
                   child: Text(
                     'Get In Touch',
-                    style: TextStyle(
-                      color: Colors.white,
+                    style: textTheme.labelLarge?.copyWith(
+                      color: colorScheme.onPrimary,
                       fontWeight: FontWeight.w500,
                       fontSize: isMobile ? 14 : 16,
                     ),
@@ -137,22 +194,67 @@ class HeroSectionWidget extends StatelessWidget {
                 ),
                 OutlinedButton(
                   onPressed: onBrowseProjectPressed,
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.black12, width: 2),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: isMobile ? 14 : 24,
-                      vertical: isMobile ? 13 : 18,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
+                  style:
+                      OutlinedButton.styleFrom(
+                        side: BorderSide(
+                          color: colorScheme.outline,
+                          width: 1.0,
+                        ),
+                        foregroundColor: colorScheme.onSurface,
+                        disabledForegroundColor: colorScheme.onSurface
+                            .withValues(alpha: 0.38),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isMobile ? 14 : 24,
+                          vertical: isMobile ? 13 : 18,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ).copyWith(
+                        // Theme-aware hover and focus effects
+                        overlayColor: WidgetStateProperty.resolveWith((states) {
+                          if (states.contains(WidgetState.hovered)) {
+                            return colorScheme.onSurface.withValues(
+                              alpha: 0.04,
+                            );
+                          }
+                          if (states.contains(WidgetState.focused)) {
+                            return colorScheme.onSurface.withValues(
+                              alpha: 0.12,
+                            );
+                          }
+                          if (states.contains(WidgetState.pressed)) {
+                            return colorScheme.onSurface.withValues(
+                              alpha: 0.12,
+                            );
+                          }
+                          return null;
+                        }),
+                        side: WidgetStateProperty.resolveWith((states) {
+                          if (states.contains(WidgetState.focused)) {
+                            return BorderSide(
+                              color: colorScheme.primary,
+                              width: 2.0,
+                            );
+                          }
+                          if (states.contains(WidgetState.hovered)) {
+                            return BorderSide(
+                              color: colorScheme.onSurface,
+                              width: 1.0,
+                            );
+                          }
+                          return BorderSide(
+                            color: colorScheme.outline,
+                            width: 1.0,
+                          );
+                        }),
+                      ),
                   child: Text(
                     'Browse Projects',
-                    style: TextStyle(
-                      color: Colors.black87,
+                    style: textTheme.labelLarge?.copyWith(
                       fontWeight: FontWeight.w500,
                       fontSize: isMobile ? 14 : 16,
+                      color: colorScheme.onSurface,
                     ),
                   ),
                 ),
@@ -161,9 +263,8 @@ class HeroSectionWidget extends StatelessWidget {
           ],
         );
 
-        // Responsive arrangement
         return Container(
-          color: Colors.white,
+          color: backgroundColor,
           width: double.infinity,
           height: isMobile ? null : MediaQuery.of(context).size.height,
           padding: EdgeInsets.symmetric(
@@ -186,9 +287,7 @@ class HeroSectionWidget extends StatelessWidget {
                   : Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // LEFT: Text
                         Expanded(flex: 2, child: textContent),
-                        // RIGHT: photo
                         Expanded(flex: 1, child: profileImage),
                       ],
                     ),

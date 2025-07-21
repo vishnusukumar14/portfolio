@@ -68,11 +68,13 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
     if (widget.onSend != null) {
       widget.onSend!(name, email, message);
     } else {
-      // Default: show SnackBar
+      // Default: show SnackBar with theme-aware colors
+      final theme = Theme.of(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Thank you, $name! Your message has been sent.'),
-          backgroundColor: Colors.green[700],
+          backgroundColor: theme.colorScheme.primary,
+          behavior: SnackBarBehavior.floating,
         ),
       );
       _formKey.currentState!.reset();
@@ -99,6 +101,11 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+    final isDark = theme.brightness == Brightness.dark;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         // Define breakpoint for mobile (700 is a good default for Flutter web/desktop/app)
@@ -118,7 +125,7 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
         final buttonFontSize = isMobile ? 13.5 : 16.0;
 
         return Container(
-          color: Colors.white,
+          color: colorScheme.surface,
           width: double.infinity,
           padding: EdgeInsets.symmetric(
             vertical: boxPaddingV,
@@ -133,21 +140,34 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
                   // --- Section Title ---
                   Text(
                     "Get in Touch",
-                    style: TextStyle(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      letterSpacing: -1.2,
-                    ),
+                    style:
+                        textTheme.headlineMedium?.copyWith(
+                          fontSize: headingSize,
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onSurface,
+                          letterSpacing: -1.2,
+                        ) ??
+                        TextStyle(
+                          fontSize: headingSize,
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onSurface,
+                          letterSpacing: -1.2,
+                        ),
                   ),
                   SizedBox(height: isMobile ? 10 : 18),
                   RichText(
                     text: TextSpan(
-                      style: TextStyle(
-                        fontSize: descriptionSize,
-                        color: Colors.grey[700],
-                        height: 1.55,
-                      ),
+                      style:
+                          textTheme.bodyMedium?.copyWith(
+                            fontSize: descriptionSize,
+                            color: colorScheme.onSurface.withOpacity(0.7),
+                            height: 1.55,
+                          ) ??
+                          TextStyle(
+                            fontSize: descriptionSize,
+                            color: colorScheme.onSurface.withOpacity(0.7),
+                            height: 1.55,
+                          ),
                       children: [
                         TextSpan(
                           text:
@@ -166,11 +186,11 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
                             child: Text(
                               "REMOVED_EMAIL",
                               style: TextStyle(
-                                color: Color(0xFFA70F0F),
+                                color: colorScheme.primary,
                                 fontSize: emailFontSize,
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: 0.4,
-                                decorationColor: Color(0xFFA70F0F),
+                                decorationColor: colorScheme.primary,
                                 decorationThickness: 0.8,
                                 decoration: TextDecoration.underline,
                               ),
@@ -184,9 +204,12 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
 
                   // --- CONTACT FORM ---
                   Material(
-                    elevation: 0,
+                    elevation: isDark ? 2 : 0,
                     borderRadius: BorderRadius.circular(14),
-                    color: Colors.grey.shade50,
+                    color: isDark
+                        ? colorScheme.surfaceContainer
+                        : colorScheme.surfaceContainerLowest,
+                    shadowColor: colorScheme.shadow.withOpacity(0.1),
                     child: Padding(
                       padding: EdgeInsets.all(formPadding),
                       child: Form(
@@ -200,25 +223,55 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
                             // Name Field
                             TextFormField(
                               controller: _nameCtrl,
+                              style: textTheme.bodyMedium?.copyWith(
+                                fontSize: labelFontSize + 1,
+                                color: colorScheme.onSurface,
+                              ),
                               decoration: InputDecoration(
                                 labelText: "Name",
-                                labelStyle: TextStyle(fontSize: labelFontSize),
+                                labelStyle: textTheme.labelMedium?.copyWith(
+                                  fontSize: labelFontSize,
+                                  color: colorScheme.onSurface.withOpacity(0.7),
+                                ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.outline,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.outline,
+                                  ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
-                                    color: Color(0xFFA70F0F),
+                                    color: colorScheme.primary,
                                     width: 2,
                                   ),
                                 ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.error,
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.error,
+                                    width: 2,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: colorScheme.surface,
                                 contentPadding: EdgeInsets.symmetric(
                                   vertical: inputVerticalPad,
                                   horizontal: 12,
                                 ),
                               ),
-                              style: TextStyle(fontSize: labelFontSize + 1),
                               validator: _validateName,
                               onChanged: (v) => setState(() {}),
                             ),
@@ -226,25 +279,55 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
                             // Email Field
                             TextFormField(
                               controller: _emailCtrl,
+                              style: textTheme.bodyMedium?.copyWith(
+                                fontSize: labelFontSize + 1,
+                                color: colorScheme.onSurface,
+                              ),
                               decoration: InputDecoration(
                                 labelText: "Email",
-                                labelStyle: TextStyle(fontSize: labelFontSize),
+                                labelStyle: textTheme.labelMedium?.copyWith(
+                                  fontSize: labelFontSize,
+                                  color: colorScheme.onSurface.withOpacity(0.7),
+                                ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.outline,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.outline,
+                                  ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
-                                    color: Color(0xFFA70F0F),
+                                    color: colorScheme.primary,
                                     width: 2,
                                   ),
                                 ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.error,
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.error,
+                                    width: 2,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: colorScheme.surface,
                                 contentPadding: EdgeInsets.symmetric(
                                   vertical: inputVerticalPad,
                                   horizontal: 12,
                                 ),
                               ),
-                              style: TextStyle(fontSize: labelFontSize + 1),
                               validator: _validateEmail,
                               keyboardType: TextInputType.emailAddress,
                               onChanged: (v) => setState(() {}),
@@ -254,25 +337,55 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
                             TextFormField(
                               controller: _messageCtrl,
                               maxLines: 4,
+                              style: textTheme.bodyMedium?.copyWith(
+                                fontSize: labelFontSize + 1,
+                                color: colorScheme.onSurface,
+                              ),
                               decoration: InputDecoration(
                                 labelText: "Your Message",
-                                labelStyle: TextStyle(fontSize: labelFontSize),
+                                labelStyle: textTheme.labelMedium?.copyWith(
+                                  fontSize: labelFontSize,
+                                  color: colorScheme.onSurface.withOpacity(0.7),
+                                ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.outline,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.outline,
+                                  ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
-                                    color: Color(0xFFA70F0F),
+                                    color: colorScheme.primary,
                                     width: 2,
                                   ),
                                 ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.error,
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: colorScheme.error,
+                                    width: 2,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: colorScheme.surface,
                                 contentPadding: EdgeInsets.symmetric(
                                   vertical: inputVerticalPad,
                                   horizontal: 12,
                                 ),
                               ),
-                              style: TextStyle(fontSize: labelFontSize + 1),
                               validator: _validateMessage,
                               onChanged: (v) => setState(() {}),
                             ),
@@ -282,36 +395,49 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
                                   ? _submitForm
                                   : null,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black,
+                                backgroundColor: colorScheme.primary,
+                                foregroundColor: colorScheme.onPrimary,
+                                disabledBackgroundColor: colorScheme.onSurface
+                                    .withOpacity(0.12),
+                                disabledForegroundColor: colorScheme.onSurface
+                                    .withOpacity(0.38),
                                 padding: EdgeInsets.symmetric(
                                   vertical: buttonPaddingV,
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                elevation: 0,
-                                foregroundColor: Colors.white,
+                                elevation: isDark ? 1 : 2,
+                                shadowColor: colorScheme.shadow.withOpacity(
+                                  0.3,
+                                ),
                               ),
                               icon: _isSending
                                   ? SizedBox(
                                       width: 16,
                                       height: 16,
                                       child: CircularProgressIndicator(
-                                        color: Colors.white,
+                                        color: colorScheme.onPrimary,
                                         strokeWidth: 2.1,
                                       ),
                                     )
                                   : Icon(
                                       Icons.send_rounded,
-                                      color: Colors.white,
+                                      color: colorScheme.onPrimary,
                                     ),
                               label: Text(
                                 _isSending ? 'Sending...' : 'Send Message',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: buttonFontSize,
-                                ),
+                                style:
+                                    textTheme.labelLarge?.copyWith(
+                                      color: colorScheme.onPrimary,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: buttonFontSize,
+                                    ) ??
+                                    TextStyle(
+                                      color: colorScheme.onPrimary,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: buttonFontSize,
+                                    ),
                               ),
                             ),
                           ],

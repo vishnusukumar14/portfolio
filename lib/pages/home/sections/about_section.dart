@@ -8,14 +8,52 @@ class AboutSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final bool isMobile = constraints.maxWidth < 700;
 
-        // Responsive font sizes
-        final headlineSize = isMobile ? 22.0 : 36.0;
-        final subTitleSize = isMobile ? 14.0 : 18.0;
-        final bodySize = isMobile ? 13.0 : 16.0;
+        // Responsive font sizes based on theme text styles
+        final headlineStyle = isMobile
+            ? textTheme.headlineSmall?.copyWith(
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
+                letterSpacing: -1.5,
+                color: colorScheme.onSurface,
+              )
+            : textTheme.headlineMedium?.copyWith(
+                fontSize: 32.0,
+                fontWeight: FontWeight.bold,
+                letterSpacing: -1.5,
+                color: colorScheme.onSurface,
+              );
+
+        final subTitleStyle = isMobile
+            ? textTheme.bodyMedium?.copyWith(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.primary,
+              )
+            : textTheme.titleMedium?.copyWith(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.primary,
+              );
+
+        final bodyStyle = isMobile
+            ? textTheme.bodySmall?.copyWith(
+                fontSize: 13.0,
+                height: 1.4,
+                color: colorScheme.onSurface.withValues(alpha: 0.87),
+              )
+            : textTheme.bodyMedium?.copyWith(
+                fontSize: 16.0,
+                height: 1.4,
+                color: colorScheme.onSurface.withValues(alpha: 0.87),
+              );
 
         // Main content (about intro)
         Widget aboutTextSection = Column(
@@ -24,41 +62,28 @@ class AboutSectionWidget extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(Icons.person, size: isMobile ? 24 : 36),
-                SizedBox(width: isMobile ? 8 : 16),
-                Text(
-                  "Behind the Code",
-                  style: TextStyle(
-                    fontSize: headlineSize,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    letterSpacing: -1.5,
-                  ),
+                Icon(
+                  Icons.person,
+                  size: isMobile ? 24 : 36,
+                  color: colorScheme.primary,
                 ),
+                SizedBox(width: isMobile ? 8 : 16),
+                Text("Behind the Code", style: headlineStyle),
               ],
             ),
             SizedBox(height: isMobile ? 14 : 24),
             Text(
               "Flutter Developer (Fresher) | Passionate About Performance, Clean Architecture & Real-Time Apps",
-              style: TextStyle(
-                color: Color(0xFF4D0202),
-                fontWeight: FontWeight.bold,
-                fontSize: subTitleSize,
-              ),
+              style: subTitleStyle,
             ),
             SizedBox(height: isMobile ? 10 : 16),
             Text(
-              """I'm an enthusiastic Flutter developer with a strong interest in building smooth, scalable, and user-friendly cross-platform applications. During my academic projects and internship experience, I’ve worked with Flutter & Dart, focusing on clean architecture and efficient state management using tools like Riverpod, Bloc, and Provider.
+              """I'm an enthusiastic Flutter developer with a strong interest in building smooth, scalable, and user-friendly cross-platform applications. During my academic projects and internship experience, I've worked with Flutter & Dart, focusing on clean architecture and efficient state management using tools like Riverpod, Bloc, and Provider.
 
-I’ve gained hands-on experience integrating REST APIs, Firebase, and MongoDB, and have built secure login systems and real-time features. I'm also familiar with Android development using Kotlin and Jetpack Compose, and have explored backend development using Python and Django.
+I've gained hands-on experience integrating REST APIs, Firebase, and MongoDB, and have built secure login systems and real-time features. I'm also familiar with Android development using Kotlin and Jetpack Compose, and have explored backend development using Python and Django.
 
-I enjoy debugging tough issues, optimizing performance, and crafting polished UI/UX. I’m eager to learn, build, and grow as a Flutter developer in a challenging and collaborative environment.""",
-              style: TextStyle(
-                fontSize: bodySize,
-                color: Colors.black87,
-                height: 1.4,
-                fontWeight: FontWeight.w400,
-              ),
+I enjoy debugging tough issues, optimizing performance, and crafting polished UI/UX. I'm eager to learn, build, and grow as a Flutter developer in a challenging and collaborative environment.""",
+              style: bodyStyle,
             ),
             SizedBox(height: isMobile ? 14 : 24),
             Row(
@@ -109,7 +134,7 @@ I enjoy debugging tough issues, optimizing performance, and crafting polished UI
         );
 
         return Container(
-          color: Colors.white,
+          color: colorScheme.surface,
           width: double.infinity,
           height: isMobile ? null : MediaQuery.of(context).size.height,
           // reduce the vertical padding for mobile
@@ -119,7 +144,7 @@ I enjoy debugging tough issues, optimizing performance, and crafting polished UI
           ),
           child: Center(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 1200),
+              constraints: BoxConstraints(maxWidth: 1300),
               child: isMobile
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

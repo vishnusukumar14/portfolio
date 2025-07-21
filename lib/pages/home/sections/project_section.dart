@@ -8,6 +8,9 @@ class ProjectSectionWithNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final bool isMobile = MediaQuery.of(context).size.width < 700;
@@ -15,12 +18,18 @@ class ProjectSectionWithNote extends StatelessWidget {
         final leftNote = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(Icons.format_quote_rounded, size: isMobile ? 32 : 48),
+            Icon(
+              Icons.format_quote_rounded,
+              size: isMobile ? 32 : 48,
+              color: theme.colorScheme.primary,
+            ),
             SizedBox(height: isMobile ? 8 : 18),
             Text(
               Contents.projectSectionDescription,
-              style: TextStyle(
-                color: Colors.black87,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(
+                  alpha: isDark ? 0.9 : 0.87,
+                ),
                 fontSize: isMobile ? 13 : 15.5,
                 height: 1.4,
               ),
@@ -28,8 +37,10 @@ class ProjectSectionWithNote extends StatelessWidget {
             SizedBox(height: isMobile ? 10 : 18),
             Text(
               "- Vishnu S Nair",
-              style: TextStyle(
-                color: Colors.grey[700],
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(
+                  alpha: isDark ? 0.7 : 0.6,
+                ),
                 fontSize: isMobile ? 12 : 14.5,
                 fontStyle: FontStyle.italic,
               ),
@@ -40,14 +51,18 @@ class ProjectSectionWithNote extends StatelessWidget {
         final projectsHeader = Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.dashboard, size: isMobile ? 22 : 36),
+            Icon(
+              Icons.dashboard,
+              size: isMobile ? 22 : 36,
+              color: theme.iconTheme.color,
+            ),
             SizedBox(width: isMobile ? 8 : 16),
             Text(
               "Projects",
-              style: TextStyle(
+              style: theme.textTheme.headlineMedium?.copyWith(
                 fontSize: isMobile ? 20 : 36,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: theme.colorScheme.onSurface,
                 letterSpacing: -1.5,
               ),
             ),
@@ -56,7 +71,7 @@ class ProjectSectionWithNote extends StatelessWidget {
 
         final projectsGrid = GridView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: Contents.allProjects.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: isMobile ? 1 : 2,
@@ -69,7 +84,7 @@ class ProjectSectionWithNote extends StatelessWidget {
         );
 
         return Container(
-          color: Colors.white,
+          color: theme.colorScheme.surface,
           width: double.infinity,
           padding: EdgeInsets.symmetric(
             vertical: isMobile ? 20 : 64,
@@ -83,9 +98,9 @@ class ProjectSectionWithNote extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         leftNote,
-                        SizedBox(height: 32),
+                        const SizedBox(height: 32),
                         projectsHeader,
-                        SizedBox(height: 18),
+                        const SizedBox(height: 18),
                         projectsGrid,
                       ],
                     )
@@ -94,7 +109,7 @@ class ProjectSectionWithNote extends StatelessWidget {
                       children: [
                         // LEFT: Personal Note
                         Expanded(flex: 1, child: leftNote),
-                        SizedBox(width: 88),
+                        const SizedBox(width: 88),
                         // RIGHT: Projects grid
                         Expanded(
                           flex: 3,

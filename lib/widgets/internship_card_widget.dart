@@ -18,6 +18,7 @@ class InternshipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -50,13 +51,15 @@ class InternshipCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(isMobile ? 12 : 18),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.04),
+                color: isDark
+                    ? Colors.black.withValues(alpha: 0.3)
+                    : Colors.black.withValues(alpha: 0.04),
                 blurRadius: isMobile ? 6 : 15,
                 offset: Offset(0, isMobile ? 2 : 6),
               ),
             ],
             border: Border.all(
-              color: theme.dividerColor.withValues(alpha: 0.17),
+              color: theme.dividerColor.withValues(alpha: isDark ? 0.3 : 0.17),
               width: isMobile ? 0.7 : 1.1,
             ),
           ),
@@ -79,11 +82,11 @@ class InternshipCard extends StatelessWidget {
                         height: logoSize,
                         fit: BoxFit.fitWidth,
                         errorBuilder: (c, e, s) => CircleAvatar(
-                          backgroundColor: theme.primaryColorLight,
+                          backgroundColor: theme.colorScheme.primaryContainer,
                           radius: avatarRadius,
                           child: Icon(
                             Icons.business,
-                            color: theme.primaryColorDark,
+                            color: theme.colorScheme.onPrimaryContainer,
                             size: isMobile ? 17 : 22,
                           ),
                         ),
@@ -92,12 +95,10 @@ class InternshipCard extends StatelessWidget {
                   else
                     CircleAvatar(
                       radius: avatarRadius,
-                      backgroundColor: theme.primaryColorLight.withValues(
-                        alpha: 0.97,
-                      ),
+                      backgroundColor: theme.colorScheme.primaryContainer,
                       child: Icon(
                         Icons.business,
-                        color: theme.primaryColorDark,
+                        color: theme.colorScheme.onPrimaryContainer,
                         size: isMobile ? 17 : 22,
                       ),
                     ),
@@ -114,7 +115,7 @@ class InternshipCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: titleFontSize,
                             letterSpacing: -0.2,
-                            color: Colors.black,
+                            color: theme.colorScheme.onSurface,
                           ),
                         ),
                         SizedBox(height: isMobile ? 0.5 : 1),
@@ -141,7 +142,9 @@ class InternshipCard extends StatelessWidget {
                       vertical: isMobile ? 2 : 3,
                     ),
                     decoration: BoxDecoration(
-                      color: theme.primaryColorLight.withValues(alpha: 0.22),
+                      color: theme.colorScheme.secondaryContainer.withValues(
+                        alpha: isDark ? 0.3 : 0.7,
+                      ),
                       borderRadius: BorderRadius.circular(isMobile ? 8 : 15),
                     ),
                     child: Row(
@@ -149,15 +152,13 @@ class InternshipCard extends StatelessWidget {
                         Icon(
                           Icons.location_on,
                           size: isMobile ? 10 : 13,
-                          color: theme.primaryColorDark.withValues(alpha: 0.75),
+                          color: theme.colorScheme.onSecondaryContainer,
                         ),
                         SizedBox(width: isMobile ? 2.5 : 4),
                         Text(
                           experience.location,
                           style: TextStyle(
-                            color: theme.primaryColorDark.withValues(
-                              alpha: 0.75,
-                            ),
+                            color: theme.colorScheme.onSecondaryContainer,
                             fontSize: locationFontSize,
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.16,
@@ -175,7 +176,9 @@ class InternshipCard extends StatelessWidget {
               Text(
                 experience.duration,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey[700],
+                  color: theme.colorScheme.onSurface.withValues(
+                    alpha: isDark ? 0.7 : 0.6,
+                  ),
                   fontSize: durationFontSize,
                   fontWeight: FontWeight.w500,
                 ),
@@ -185,7 +188,9 @@ class InternshipCard extends StatelessWidget {
               Divider(
                 height: dividerHeight,
                 thickness: dividerThick,
-                color: theme.dividerColor.withValues(alpha: 0.23),
+                color: theme.dividerColor.withValues(
+                  alpha: isDark ? 0.4 : 0.23,
+                ),
               ),
 
               /// Highlights
@@ -211,7 +216,7 @@ class InternshipCard extends StatelessWidget {
                         child: Text(
                           highlight.trim(),
                           style: TextStyle(
-                            color: Colors.black,
+                            color: theme.colorScheme.onSurface,
                             fontSize: highlightFontSize,
                             fontWeight: i == 0
                                 ? FontWeight.bold
@@ -223,7 +228,7 @@ class InternshipCard extends StatelessWidget {
                     ],
                   ),
                 );
-              }).toList(),
+              }),
 
               if (experience.highlights.isNotEmpty)
                 SizedBox(height: isMobile ? 8 : 11),
@@ -239,20 +244,20 @@ class InternshipCard extends StatelessWidget {
                           tech,
                           style: TextStyle(
                             fontSize: chipFontSize,
-                            color: theme.colorScheme.primary,
+                            color: theme.colorScheme.onTertiaryContainer,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         avatar: Icon(
                           Icons.code,
                           size: chipIconSize,
-                          color: theme.colorScheme.primary,
+                          color: theme.colorScheme.onTertiaryContainer,
                         ),
-                        backgroundColor: theme.primaryColorLight.withValues(
-                          alpha: 0.16,
-                        ),
+                        backgroundColor: theme.colorScheme.tertiaryContainer,
                         side: BorderSide(
-                          color: theme.primaryColorDark.withValues(alpha: 0.20),
+                          color: theme.colorScheme.outline.withValues(
+                            alpha: isDark ? 0.5 : 0.3,
+                          ),
                           width: isMobile ? 0.5 : 0.8,
                         ),
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
