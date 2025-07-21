@@ -73,11 +73,15 @@ class ProjectSectionWithNote extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: Contents.allProjects.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: isMobile ? 1 : 2,
-            crossAxisSpacing: isMobile ? 14 : 28,
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            mainAxisExtent: isMobile
+                ? MediaQuery.of(context).size.width * 0.75
+                : 180, // adjust for responsive width,
+            maxCrossAxisExtent: isMobile
+                ? MediaQuery.of(context).size.width * 0.75
+                : 450, // adjust for responsive width
             mainAxisSpacing: isMobile ? 18 : 28,
-            childAspectRatio: isMobile ? 1.1 : 2.0,
+            crossAxisSpacing: isMobile ? 14 : 28,
           ),
           itemBuilder: (context, i) =>
               ProjectCard(project: Contents.allProjects[i]),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/contents.dart';
 import '../../../widgets/education_card_widget.dart';
 import '../../../widgets/social_icon_asset_widget.dart';
 
@@ -77,14 +78,8 @@ class AboutSectionWidget extends StatelessWidget {
               style: subTitleStyle,
             ),
             SizedBox(height: isMobile ? 10 : 16),
-            Text(
-              """I'm an enthusiastic Flutter developer with a strong interest in building smooth, scalable, and user-friendly cross-platform applications. During my academic projects and internship experience, I've worked with Flutter & Dart, focusing on clean architecture and efficient state management using tools like Riverpod, Bloc, and Provider.
+            Text(Contents.aboutMeSectionDescription, style: bodyStyle),
 
-I've gained hands-on experience integrating REST APIs, Firebase, and MongoDB, and have built secure login systems and real-time features. I'm also familiar with Android development using Kotlin and Jetpack Compose, and have explored backend development using Python and Django.
-
-I enjoy debugging tough issues, optimizing performance, and crafting polished UI/UX. I'm eager to learn, build, and grow as a Flutter developer in a challenging and collaborative environment.""",
-              style: bodyStyle,
-            ),
             SizedBox(height: isMobile ? 14 : 24),
             Row(
               children: [
