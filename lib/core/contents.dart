@@ -5,7 +5,15 @@ import 'models/experience.dart';
 import 'models/project.dart';
 
 class Contents {
-  static final projectSectionDescription =
+  static const aboutMeSectionDescription =
+      """I'm an enthusiastic Flutter developer with a strong interest in building smooth, scalable, and user-friendly cross-platform applications. During my academic projects and internship experience, I've worked with Flutter & Dart, focusing on clean architecture and efficient state management using tools like Riverpod, Bloc, and Provider.
+I've gained hands-on experience integrating REST APIs, Firebase, and MongoDB, and have built secure login systems and real-time features. I'm also familiar with Android development using Kotlin and Jetpack Compose, and have explored backend development using Python and Django.
+
+I enjoy debugging tough issues, optimizing performance, and crafting polished UI/UX. I'm eager to learn, build, and grow as a Flutter developer in a challenging and collaborative environment.
+
+Oh, and by the way—this entire website is built with Flutter too!""";
+
+  static const projectSectionDescription =
       "Hey! Here you'll find a collection of my personal experiments and projects — "
       "ranging from Flutter apps to native Kotlin applications. "
       "Many of these are integrated with Firebase, MongoDB, "
@@ -105,7 +113,7 @@ class Contents {
           "Django backend for QuickGO applications, with advance security and payment integration.",
       codeUrl: "https://github.com/vishnusukumar14/VoiGO-server",
       stars: 5,
-      language: "Python, HTML, Others",
+      language: "Python, HTML",
       languageColor: Colors.blueAccent,
       isPrivate: true,
     ),
