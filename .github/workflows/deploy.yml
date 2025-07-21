@@ -43,6 +43,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-flutter-
 
+      - name: Restore firebase_options.dart
+        run: |
+          mkdir -p lib
+          echo "${{ secrets.FIREBASE_OPTIONS_DART }}" > lib/firebase_options.dart
+
       - name: Install dependencies
         run: flutter pub get
 
