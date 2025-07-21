@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/pages/home/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'core/theme.dart';
+import 'core/util.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -14,13 +16,13 @@ class PortfolioApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = View.of(context).platformDispatcher.platformBrightness;
+    TextTheme textTheme = createTextTheme(context, "Lato", "Arvo");
+    MaterialTheme theme = MaterialTheme(textTheme);
+
     return MaterialApp(
       title: 'Vishnu Sukumar - Portfolio',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Montserrat',
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: brightness == Brightness.light ? theme.light() : theme.light(),
       home: PortfolioHomePage(),
       debugShowCheckedModeBanner: false,
     );
