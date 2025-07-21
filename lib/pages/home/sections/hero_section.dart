@@ -163,14 +163,14 @@ class HeroSectionWidget extends StatelessWidget {
         return Container(
           color: Colors.white,
           width: double.infinity,
-
+          height: isMobile ? null : MediaQuery.of(context).size.height,
           padding: EdgeInsets.symmetric(
             vertical: isMobile ? 20 : 64,
             horizontal: isMobile ? 16 : 32,
           ),
           child: Center(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 1200),
+              constraints: BoxConstraints(maxWidth: isMobile ? 700 : 1300),
               child: isMobile
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,

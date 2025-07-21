@@ -10,7 +10,7 @@ class ProjectSectionWithNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final bool isMobile = constraints.maxWidth < 700;
+        final bool isMobile = MediaQuery.of(context).size.width < 700;
 
         final leftNote = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,8 +72,8 @@ class ProjectSectionWithNote extends StatelessWidget {
           color: Colors.white,
           width: double.infinity,
           padding: EdgeInsets.symmetric(
-            vertical: isMobile ? 24 : 56,
-            horizontal: isMobile ? 8 : 0,
+            vertical: isMobile ? 20 : 64,
+            horizontal: isMobile ? 16 : 32,
           ),
           child: Center(
             child: ConstrainedBox(

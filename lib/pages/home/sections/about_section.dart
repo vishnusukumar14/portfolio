@@ -111,6 +111,7 @@ I enjoy debugging tough issues, optimizing performance, and crafting polished UI
         return Container(
           color: Colors.white,
           width: double.infinity,
+          height: isMobile ? null : MediaQuery.of(context).size.height,
           // reduce the vertical padding for mobile
           padding: EdgeInsets.symmetric(
             vertical: isMobile ? 18 : 48,
