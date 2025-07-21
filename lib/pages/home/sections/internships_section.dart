@@ -81,8 +81,10 @@ class InternshipsSectionWidget extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     separatorBuilder: (c, i) => SizedBox(height: cardsSpacing),
-                    itemBuilder: (c, i) =>
-                        InternshipCard(experience: Contents.experiences[i]),
+                    itemBuilder: (c, i) => InternshipCard(
+                      experience: Contents.experiences[i],
+                      isMobile: isMobile,
+                    ),
                   ),
                 ],
               ),
