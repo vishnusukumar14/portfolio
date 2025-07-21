@@ -138,7 +138,7 @@ Oh, and by the way—this entire website is built with Flutter too!""";
       name: "QuickGO",
       description:
           "QuickGO is a Kotlin/Java based Android application designed for hyperlocal delivery services, connecting nearby vendors and customers for fast and efficient last-mile delivery. "
-          "Built with a focus on real-time order tracking, smooth UI, and reliable backend integration, QuickGO provides a seamless experience for both customers and delivery partners.",
+          "QuickGO provides a seamless experience for both customers and delivery partners.",
       codeUrl: "https://github.com/vishnusukumar14/quickgo-clients",
       stars: 5,
       language: "Kotlin, Java",
