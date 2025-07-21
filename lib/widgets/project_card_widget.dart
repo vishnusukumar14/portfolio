@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_app/core/utils.dart';
+import 'package:portfolio_app/core/contents.dart';
 
 import '../core/models/project.dart';
 
@@ -24,7 +24,7 @@ class ProjectCard extends StatelessWidget {
         final double statusIconSize = isMobile ? 8 : 12;
 
         return InkWell(
-          onTap: () => Utils.launch(project.codeUrl),
+          onTap: () => Contents.launch(project.codeUrl),
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(

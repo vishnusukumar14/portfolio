@@ -16,7 +16,9 @@ class HeroSectionWidget extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         // Is mobile? (you can tune this breakpoint)
-        final bool isMobile = MediaQuery.of(context).size.width < 700;
+        // final bool isMobile = MediaQuery.of(context).size.width < 700;
+
+        final bool isMobile = constraints.maxWidth < 700;
         final double headlineSize = isMobile ? 34 : 64;
         final double subHeadSize = isMobile ? 14 : 22;
         final double bodySize = isMobile ? 13 : 18;

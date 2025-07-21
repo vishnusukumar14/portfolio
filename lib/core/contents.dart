@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'models/experience.dart';
 import 'models/project.dart';
 
-class Utils {
+class Contents {
   static final projectSectionDescription =
       "Hey! Here you'll find a collection of my personal experiments and projects — "
       "ranging from Flutter apps to native Kotlin applications. "

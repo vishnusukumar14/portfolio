@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_app/core/utils.dart';
+import 'package:portfolio_app/core/contents.dart';
 
 import '../../../widgets/internship_card_widget.dart';
 
@@ -66,12 +66,12 @@ class InternshipsSectionWidget extends StatelessWidget {
                   sectionHeader,
                   SizedBox(height: isMobile ? 20 : 32),
                   ListView.separated(
-                    itemCount: Utils.experiences.length,
+                    itemCount: Contents.experiences.length,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     separatorBuilder: (c, i) => SizedBox(height: cardsSpacing),
                     itemBuilder: (c, i) =>
-                        InternshipCard(experience: Utils.experiences[i]),
+                        InternshipCard(experience: Contents.experiences[i]),
                   ),
                 ],
               ),

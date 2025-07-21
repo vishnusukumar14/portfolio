@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_app/core/utils.dart';
+import 'package:portfolio_app/core/contents.dart';
 
 import '../../../widgets/project_card_widget.dart';
 
@@ -18,7 +18,7 @@ class ProjectSectionWithNote extends StatelessWidget {
             Icon(Icons.format_quote_rounded, size: isMobile ? 32 : 48),
             SizedBox(height: isMobile ? 8 : 18),
             Text(
-              Utils.projectSectionDescription,
+              Contents.projectSectionDescription,
               style: TextStyle(
                 color: Colors.black87,
                 fontSize: isMobile ? 13 : 15.5,
@@ -57,7 +57,7 @@ class ProjectSectionWithNote extends StatelessWidget {
         final projectsGrid = GridView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: Utils.allProjects.length,
+          itemCount: Contents.allProjects.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: isMobile ? 1 : 2,
             crossAxisSpacing: isMobile ? 14 : 28,
@@ -65,7 +65,7 @@ class ProjectSectionWithNote extends StatelessWidget {
             childAspectRatio: isMobile ? 1.1 : 2.0,
           ),
           itemBuilder: (context, i) =>
-              ProjectCard(project: Utils.allProjects[i]),
+              ProjectCard(project: Contents.allProjects[i]),
         );
 
         return Container(
