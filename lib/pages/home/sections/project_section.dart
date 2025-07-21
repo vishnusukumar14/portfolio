@@ -69,22 +69,57 @@ class ProjectSectionWithNote extends StatelessWidget {
           ],
         );
 
-        final projectsGrid = GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: Contents.allProjects.length,
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            mainAxisExtent: isMobile
-                ? MediaQuery.of(context).size.width * 0.75
-                : 180, // adjust for responsive width,
-            maxCrossAxisExtent: isMobile
-                ? MediaQuery.of(context).size.width * 0.75
-                : 450, // adjust for responsive width
-            mainAxisSpacing: isMobile ? 18 : 28,
-            crossAxisSpacing: isMobile ? 14 : 28,
-          ),
-          itemBuilder: (context, i) =>
-              ProjectCard(project: Contents.allProjects[i]),
+        final projectsGrid = LayoutBuilder(
+          builder: (context, constraints) {
+            // Determine screen type and responsive values
+            final bool isMobile = constraints.maxWidth < 600;
+            final bool isTablet =
+                constraints.maxWidth >= 600 && constraints.maxWidth < 900;
+            final bool isDesktopSmall =
+                constraints.maxWidth >= 900 && constraints.maxWidth < 1200;
+
+            // Grid configuration based on screen size
+            int crossAxisCount;
+            double childAspectRatio;
+            double spacing;
+
+            if (isMobile) {
+              // Mobile: 1 column
+              crossAxisCount = 1;
+              childAspectRatio =
+                  1.6; // Adjust based on your content height needs
+              spacing = 16;
+            } else if (isTablet) {
+              // Tablet: 2 columns
+              crossAxisCount = 2;
+              childAspectRatio = 1.2;
+              spacing = 20;
+            } else if (isDesktopSmall) {
+              // Desktop small: 2-3 columns
+              crossAxisCount = 2;
+              childAspectRatio = 1.3;
+              spacing = 24;
+            } else {
+              // Desktop large: 3 columns
+              crossAxisCount = 3;
+              childAspectRatio = 1.1;
+              spacing = 28;
+            }
+
+            return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: Contents.allProjects.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                crossAxisSpacing: spacing,
+                mainAxisSpacing: spacing,
+                childAspectRatio: childAspectRatio,
+              ),
+              itemBuilder: (context, i) =>
+                  ProjectCard(project: Contents.allProjects[i]),
+            );
+          },
         );
 
         return Container(
