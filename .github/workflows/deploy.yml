@@ -74,7 +74,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: github-pages
-          path: .
+          path: 'build/web'
 
       - name: Deploy to GitHub Pages
         id: deployment
