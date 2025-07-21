@@ -42,10 +42,9 @@ Oh, and by the way—this entire website is built with Flutter too!""";
         "Jetpack Compose",
         "Python",
         "Django",
+        "Git Actions",
         "gRPC",
         "Firebase",
-        "FCM",
-        "REST APIs",
         "Git",
       ],
       // Custom URLs for tech stack icons with fallback to assets
@@ -58,6 +57,7 @@ Oh, and by the way—this entire website is built with Flutter too!""";
             "https://upload.wikimedia.org/wikipedia/commons/0/06/Kotlin_Icon.svg",
         "Python":
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        "Git Actions": "https://logo.svgcdn.com/l/github-actions.svg",
         "Django":
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
         "Firebase":
@@ -65,7 +65,6 @@ Oh, and by the way—this entire website is built with Flutter too!""";
         "Git":
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
         "gRPC": "https://logo.svgcdn.com/l/grpc.svg",
-        "FCM": "https://logo.svgcdn.com/s/imessage-dark.svg",
         "Jetpack Compose":
             "https://logo.svgcdn.com/d/jetpackcompose-original.svg",
       },
@@ -90,6 +89,7 @@ Oh, and by the way—this entire website is built with Flutter too!""";
         "Django",
         "Firebase",
         "MongoDB",
+        "JetBrains",
         "REST APIs",
         "Google Maps API",
         "Git",
@@ -103,6 +103,7 @@ Oh, and by the way—this entire website is built with Flutter too!""";
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
         "Firebase":
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+        "JetBrains": "https://logo.svgcdn.com/l/jetbrains-space-icon.svg",
         "MongoDB":
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
         "Git":

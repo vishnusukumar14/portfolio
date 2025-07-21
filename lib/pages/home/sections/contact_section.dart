@@ -125,7 +125,7 @@ class _ContactSectionWidgetState extends State<ContactSectionWidget> {
         final buttonFontSize = isMobile ? 13.5 : 16.0;
 
         return Container(
-          color: colorScheme.surface,
+          // color: colorScheme.surface,
           width: double.infinity,
           padding: EdgeInsets.symmetric(
             vertical: boxPaddingV,
