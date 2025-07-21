@@ -24,7 +24,7 @@ Oh, and by the way—this entire website is built with Flutter too!""";
   static final experiences = [
     Experience(
       title: "Software Developer Intern",
-      company: "Swagino’s",
+      company: "Swagino's",
       companyProfileUrl:
           "https://www.linkedin.com/company/swaginos/posts/?feedView=all",
       duration: "Feb 2025 – June 2025",
@@ -48,6 +48,27 @@ Oh, and by the way—this entire website is built with Flutter too!""";
         "REST APIs",
         "Git",
       ],
+      // Custom URLs for tech stack icons with fallback to assets
+      techStackUrls: {
+        "Flutter":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+        "Dart":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
+        "Kotlin":
+            "https://upload.wikimedia.org/wikipedia/commons/0/06/Kotlin_Icon.svg",
+        "Python":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        "Django":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+        "Firebase":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+        "Git":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+        "gRPC": "https://logo.svgcdn.com/l/grpc.svg",
+        "FCM": "https://logo.svgcdn.com/s/imessage-dark.svg",
+        "Jetpack Compose":
+            "https://logo.svgcdn.com/d/jetpackcompose-original.svg",
+      },
     ),
     Experience(
       title: "Product Development – Voigo (Hyperlocal Delivery Platform)",
@@ -73,6 +94,21 @@ Oh, and by the way—this entire website is built with Flutter too!""";
         "Google Maps API",
         "Git",
       ],
+      techStackUrls: {
+        "Kotlin":
+            "https://upload.wikimedia.org/wikipedia/commons/0/06/Kotlin_Icon.svg",
+        "Java":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+        "Django":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+        "Firebase":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+        "MongoDB":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+        "Git":
+            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+        "Google Maps API": "https://logo.svgcdn.com/l/google-maps.svg",
+      },
     ),
   ];
 
