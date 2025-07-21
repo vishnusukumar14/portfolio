@@ -59,72 +59,9 @@ class ProjectCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// Top Row (can wrap if needed)
-                // Wrap(
-                //   crossAxisAlignment: WrapCrossAlignment.center,
-                //   runSpacing: 6,
-                //   children: [
-                //     Icon(
-                //       Icons.folder_open,
-                //       color: theme.colorScheme.onSurface.withValues(
-                //         alpha: isDark ? 0.7 : 0.6,
-                //       ),
-                //       size: iconSize,
-                //     ),
-                //     const SizedBox(width: 7),
-                //     SizedBox(
-                //       width: isMobile ? 110 : 160,
-                //       child: Text(
-                //         project.name,
-                //         overflow: TextOverflow.ellipsis,
-                //         style: theme.textTheme.titleMedium?.copyWith(
-                //           color: theme.colorScheme.onSurface,
-                //           fontSize: titleSize,
-                //           fontWeight: FontWeight.bold,
-                //           letterSpacing: -0.5,
-                //         ),
-                //       ),
-                //     ),
-                //     const SizedBox(width: 4),
-                //     Spacer(),
-                //     Container(
-                //       padding: EdgeInsets.symmetric(
-                //         horizontal: chipPaddingH,
-                //         vertical: chipPaddingV,
-                //       ),
-                //       decoration: BoxDecoration(
-                //         color: theme.colorScheme.surfaceContainer,
-                //         border: Border.all(
-                //           color: theme.dividerColor.withValues(
-                //             alpha: isDark ? 0.4 : 0.3,
-                //           ),
-                //         ),
-                //         borderRadius: BorderRadius.circular(25),
-                //       ),
-                //       child: Text(
-                //         project.isPrivate ?? false ? "Private" : "Public",
-                //         style: TextStyle(
-                //           color: theme.colorScheme.onSurface.withValues(
-                //             alpha: isDark ? 0.8 : 0.7,
-                //           ),
-                //           fontSize: chipTextSize,
-                //           overflow: TextOverflow.ellipsis,
-                //           fontWeight: FontWeight.w600,
-                //           letterSpacing: 0.15,
-                //         ),
-                //       ),
-                //     ),
-                //     const SizedBox(width: 5),
-                //     Icon(
-                //       Icons.more_vert,
-                //       color: theme.colorScheme.onSurface.withValues(
-                //         alpha: isDark ? 0.6 : 0.5,
-                //       ),
-                //       size: iconSize - 3,
-                //     ),
-                //   ],
-                // ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runSpacing: 6,
                   children: [
                     Icon(
                       Icons.folder_open,
@@ -134,16 +71,21 @@ class ProjectCard extends StatelessWidget {
                       size: iconSize,
                     ),
                     const SizedBox(width: 7),
-                    Text(
-                      project.name,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: theme.colorScheme.onSurface,
-                        fontSize: titleSize,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: -0.5,
+                    SizedBox(
+                      width: isMobile ? 110 : 160,
+                      child: Text(
+                        project.name,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: theme.colorScheme.onSurface,
+                          fontSize: titleSize,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: -0.5,
+                        ),
                       ),
                     ),
-                    const Spacer(), // Pushes remaining items to end
+                    const SizedBox(width: 4),
+                    Spacer(),
                     Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: chipPaddingH,
