@@ -107,13 +107,13 @@ class NavBarWidget extends StatelessWidget {
           onProjectsPressed,
           'Projects',
         ),
-        _buildNavItem(
-          context,
-          'Skills',
-          Icons.code_rounded,
-          onSkillsPressed,
-          'Skills',
-        ),
+        // _buildNavItem(
+        //   context,
+        //   'Skills',
+        //   Icons.code_rounded,
+        //   onSkillsPressed,
+        //   'Skills',
+        // ),
         _buildNavItem(
           context,
           'Contact',
@@ -289,7 +289,7 @@ class _MobileNavSheet extends StatelessWidget {
       _NavItemData('About', Icons.person_rounded, onAboutPressed),
       _NavItemData('Experience', Icons.work_rounded, onExperiencePressed),
       _NavItemData('Projects', Icons.folder_rounded, onProjectsPressed),
-      _NavItemData('Skills', Icons.code_rounded, onSkillsPressed),
+      // _NavItemData('Skills', Icons.code_rounded, onSkillsPressed),
       _NavItemData('Contact', Icons.mail_rounded, onContactPressed),
     ];
 
