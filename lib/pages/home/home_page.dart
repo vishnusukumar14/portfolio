@@ -135,7 +135,7 @@ class PortfolioHomePageState extends State<PortfolioHomePage> {
               // ),
               // titleSpacing: 0,
               title: Text(
-                "Welcome",
+                "Portfolio",
                 style: theme.textTheme.titleMedium?.copyWith(
                   color: colorScheme.onSurface,
                   fontWeight: FontWeight.w600,
