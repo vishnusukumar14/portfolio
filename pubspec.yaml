@@ -88,7 +88,16 @@ flutter:
   fonts:
     - family: Bitcount Prop Single
       fonts:
+        - asset: assets/fonts/BitcountPropSingle-Black.ttf
+        - asset: assets/fonts/BitcountPropSingle-Bold.ttf
+        - asset: assets/fonts/BitcountPropSingle-ExtraBold.ttf
+        - asset: assets/fonts/BitcountPropSingle-ExtraLight.ttf
+        - asset: assets/fonts/BitcountPropSingle-Light.ttf
+        - asset: assets/fonts/BitcountPropSingle-Medium.ttf
         - asset: assets/fonts/BitcountPropSingle-Regular.ttf
+        - asset: assets/fonts/BitcountPropSingle-SemiBold.ttf
+        - asset: assets/fonts/BitcountPropSingle-Thin.ttf
+
 
     - family: Montserrat
       fonts:
