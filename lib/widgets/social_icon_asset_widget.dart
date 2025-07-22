@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/core/contents.dart';
 
+import '../core/util.dart';
+
 class SocialIconAsset extends StatelessWidget {
   final String assetPath;
   final String url;
@@ -16,7 +18,7 @@ class SocialIconAsset extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Contents.launch(url),
+      onTap: () => Utils.launch(url),
       borderRadius: BorderRadius.circular(8),
       child: Image.asset(assetPath, width: size, height: size),
     );

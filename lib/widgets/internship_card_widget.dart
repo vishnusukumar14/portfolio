@@ -35,12 +35,12 @@ class InternshipCard extends StatelessWidget {
             color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(6),
             border: Border.all(
-              color: theme.dividerColor.withOpacity(0.2),
+              color: theme.dividerColor.withValues(alpha: 0.2),
               width: 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: theme.shadowColor.withOpacity(0.1),
+                color: theme.shadowColor.withValues(alpha: 0.1),
                 blurRadius: 4,
                 offset: const Offset(0, 2),
               ),
@@ -119,7 +119,7 @@ class InternshipCard extends StatelessWidget {
   Widget _buildAssetImage(String assetName, ThemeData theme, String tech) {
     // Check if the asset is SVG or regular image
     return Image.asset(
-      'assets/images/tech/$assetName.png',
+      'assets/images/tech/$assetName.svg',
       fit: BoxFit.contain,
       errorBuilder: (context, error, stackTrace) {
         // Try SVG asset if PNG fails
@@ -148,11 +148,13 @@ class InternshipCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
-            border: Border.all(color: theme.dividerColor.withOpacity(0.3)),
+            border: Border.all(
+              color: theme.dividerColor.withValues(alpha: 0.3),
+            ),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: theme.shadowColor.withOpacity(0.05),
+                color: theme.shadowColor.withValues(alpha: 0.05),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -200,7 +202,7 @@ class InternshipCard extends StatelessWidget {
                             style: theme.textTheme.bodySmall?.copyWith(
                               fontSize: isMobile ? 12 : 13,
                               color: theme.textTheme.bodySmall?.color
-                                  ?.withOpacity(0.8),
+                                  ?.withValues(alpha: 0.8),
                             ),
                           ),
                         ),
@@ -215,15 +217,17 @@ class InternshipCard extends StatelessWidget {
                             Icon(
                               Icons.location_on_outlined,
                               size: isMobile ? 12 : 14,
-                              color: theme.colorScheme.primary.withOpacity(0.7),
+                              color: theme.colorScheme.primary.withValues(
+                                alpha: 0.7,
+                              ),
                             ),
                             const SizedBox(width: 4),
                             Text(
                               experience.location!,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 fontSize: isMobile ? 11 : 12,
-                                color: theme.colorScheme.primary.withOpacity(
-                                  0.8,
+                                color: theme.colorScheme.primary.withValues(
+                                  alpha: 0.8,
                                 ),
                                 fontWeight: FontWeight.w500,
                               ),
@@ -278,8 +282,9 @@ class InternshipCard extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.surfaceContainerHighest
-                        .withOpacity(0.3),
+                    color: theme.colorScheme.surfaceContainerHighest.withValues(
+                      alpha: 0.3,
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
