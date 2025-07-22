@@ -6,6 +6,8 @@ import 'models/project.dart';
 class Contents {
   static const myLinkedInUrl = "https://www.linkedin.com/in/vishnus14/";
   static const myGithubUrl = "https://github.com/vishnusukumar14";
+  static const myPhoneNumber = "REMOVED_PHONE";
+  static const myEmailId = "REMOVED_EMAIL";
 
   static const linkedInLogoMarkAssetPath = "assets/logos/li_bug_mark.png";
   static const linkedInLogoAssetPath = "assets/logos/li_logo.png";

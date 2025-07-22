@@ -17,7 +17,7 @@ class PortfolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final brightness = View.of(context).platformDispatcher.platformBrightness;
-    TextTheme textTheme = createTextTheme(context, "Lato", "Arvo");
+    TextTheme textTheme = Utils.createTextTheme(context, "Lato", "Arvo");
     MaterialTheme theme = MaterialTheme(textTheme);
 
     return MaterialApp(

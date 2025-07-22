@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/core/contents.dart';
 import 'package:portfolio_app/pages/home/sections/internships_section.dart';
 import 'package:portfolio_app/pages/home/sections/project_section.dart';
 
@@ -295,14 +296,8 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                 ),
               ),
               child: EnhancedContactSectionWidget(
-                whatsappNumber: "+919876543210",
-                emailAddress: "REMOVED_EMAIL",
-                onSend: (name, email, message) {
-                  // Optional callback after successful send
-                  if (kDebugMode) {
-                    print('Message from $name: $message');
-                  }
-                },
+                whatsappNumber: Contents.myPhoneNumber,
+                emailAddress: Contents.myEmailId,
               ),
             ),
           ),

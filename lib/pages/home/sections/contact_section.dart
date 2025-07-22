@@ -12,8 +12,8 @@ class EnhancedContactSectionWidget extends StatefulWidget {
   const EnhancedContactSectionWidget({
     super.key,
     this.onSend,
-    this.whatsappNumber = "REMOVED_PHONE",
-    this.emailAddress = "REMOVED_EMAIL",
+    this.whatsappNumber = Contents.myPhoneNumber,
+    this.emailAddress = Contents.myEmailId,
   });
 
   @override
@@ -656,10 +656,9 @@ class _EnhancedContactSectionWidgetState
                       // Mobile: Stack vertically
                       _buildContactInfo(
                         icon: Icons.email_outlined,
-                        text: 'REMOVED_EMAIL',
+                        text: Contents.myEmailId,
                         colorScheme: colorScheme,
                         isMobile: isMobile,
-                        assetPath: 'assets/icons/email.png',
                       ),
                       SizedBox(height: 8),
                       _buildContactInfo(
@@ -667,8 +666,6 @@ class _EnhancedContactSectionWidgetState
                         text: 'REMOVED_PHONE',
                         colorScheme: colorScheme,
                         isMobile: isMobile,
-
-                        assetPath: 'assets/icons/phone.png',
                       ),
                       SizedBox(height: 12),
                       _buildContactInfo(
@@ -695,7 +692,7 @@ class _EnhancedContactSectionWidgetState
                         children: [
                           _buildContactInfo(
                             icon: Icons.email_outlined,
-                            text: 'REMOVED_EMAIL',
+                            text: Contents.myEmailId,
                             colorScheme: colorScheme,
                             isMobile: isMobile,
                           ),
@@ -707,7 +704,7 @@ class _EnhancedContactSectionWidgetState
                           ),
                           _buildContactInfo(
                             icon: Icons.phone_outlined,
-                            text: 'REMOVED_PHONE',
+                            text: Contents.myPhoneNumber,
                             colorScheme: colorScheme,
                             isMobile: isMobile,
                           ),

@@ -84,14 +84,14 @@ class AboutSectionWidget extends StatelessWidget {
             Row(
               children: [
                 SocialIconAsset(
-                  assetPath: 'assets/logos/github_mark.png',
-                  url: 'https://github.com/vishnusukumar14',
+                  assetPath: Contents.githubMarkAssetPath,
+                  url: Contents.myGithubUrl,
                   size: isMobile ? 26 : 32,
                 ),
                 SizedBox(width: 16),
                 SocialIconAsset(
-                  assetPath: 'assets/logos/li_bug_mark.png',
-                  url: "https://www.linkedin.com/in/vishnus14/",
+                  assetPath: Contents.linkedInLogoMarkAssetPath,
+                  url: Contents.myLinkedInUrl,
                   size: isMobile ? 26 : 32,
                 ),
               ],
