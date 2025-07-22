@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/core/contents.dart';
 import 'package:portfolio_app/pages/home/sections/internships_section.dart';
@@ -123,19 +122,19 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                   ),
                 ),
               ),
-              leading: Container(
-                margin: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: colorScheme.primary.withValues(alpha: 0.1),
-                ),
-                child: Icon(
-                  Icons.handshake_rounded,
-                  color: colorScheme.primary,
-                  size: 20,
-                ),
-              ),
-              titleSpacing: 0,
+              // leading: Container(
+              //   margin: EdgeInsets.all(8),
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(8),
+              //     color: colorScheme.primary.withValues(alpha: 0.1),
+              //   ),
+              //   child: Icon(
+              //     Icons.handshake_rounded,
+              //     color: colorScheme.primary,
+              //     size: 20,
+              //   ),
+              // ),
+              // titleSpacing: 0,
               title: Text(
                 "Welcome",
                 style: theme.textTheme.titleMedium?.copyWith(

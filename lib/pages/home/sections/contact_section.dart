@@ -794,7 +794,7 @@ class _EnhancedContactSectionWidgetState
           SelectableText(
             text,
             style: TextStyle(
-              color: colorScheme.onSurface.withOpacity(0.8),
+              color: colorScheme.onSurface.withValues(alpha: 0.8),
               fontSize: isMobile ? 14 : 16,
               fontWeight: FontWeight.w500,
             ),

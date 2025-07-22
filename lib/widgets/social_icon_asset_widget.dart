@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_app/core/contents.dart';
 
 import '../core/util.dart';
 
