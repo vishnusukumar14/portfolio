@@ -1,477 +1,19 @@
-// import 'package:flutter/material.dart';
-// import 'package:url_launcher/url_launcher.dart';
-//
-// class ContactSectionWidget extends StatefulWidget {
-//   final void Function(String name, String email, String message)? onSend;
-//
-//   const ContactSectionWidget({super.key, this.onSend});
-//
-//   @override
-//   State<ContactSectionWidget> createState() => _ContactSectionWidgetState();
-// }
-//
-// class _ContactSectionWidgetState extends State<ContactSectionWidget> {
-//   final _formKey = GlobalKey<FormState>();
-//   final _nameCtrl = TextEditingController();
-//   final _emailCtrl = TextEditingController();
-//   final _messageCtrl = TextEditingController();
-//
-//   bool _isSending = false;
-//   bool _autoValidate = false;
-//
-//   String? _validateName(String? value) {
-//     if (value == null || value.trim().isEmpty) {
-//       return 'Name is required';
-//     }
-//     return null;
-//   }
-//
-//   String? _validateEmail(String? value) {
-//     if (value == null || value.trim().isEmpty) {
-//       return 'Email is required';
-//     }
-//     // Basic email regex
-//     final regex = RegExp(
-//       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(\.[a-zA-Z]+)+$",
-//     );
-//     if (!regex.hasMatch(value.trim())) {
-//       return 'Enter a valid email address';
-//     }
-//     return null;
-//   }
-//
-//   String? _validateMessage(String? value) {
-//     if (value == null || value.trim().isEmpty) {
-//       return 'Please enter a message';
-//     }
-//     return null;
-//   }
-//
-//   void _submitForm() async {
-//     setState(() => _autoValidate = true);
-//     if (!_formKey.currentState!.validate()) {
-//       // If invalid, do not proceed
-//       return;
-//     }
-//     setState(() => _isSending = true);
-//
-//     final name = _nameCtrl.text.trim();
-//     final email = _emailCtrl.text.trim();
-//     final message = _messageCtrl.text.trim();
-//
-//     // Simulate network or sending process
-//     await Future.delayed(Duration(milliseconds: 800));
-//
-//     setState(() => _isSending = false);
-//
-//     // Callback or dummy response
-//     if (widget.onSend != null) {
-//       widget.onSend!(name, email, message);
-//     } else {
-//       // Default: show SnackBar with theme-aware colors
-//       final theme = Theme.of(context);
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(
-//           content: Text('Thank you, $name! Your message has been sent.'),
-//           backgroundColor: theme.colorScheme.primary,
-//           behavior: SnackBarBehavior.floating,
-//         ),
-//       );
-//       _formKey.currentState!.reset();
-//       _nameCtrl.clear();
-//       _emailCtrl.clear();
-//       _messageCtrl.clear();
-//       setState(() => _autoValidate = false);
-//     }
-//   }
-//
-//   // Dispose controllers safely
-//   @override
-//   void dispose() {
-//     _nameCtrl.dispose();
-//     _emailCtrl.dispose();
-//     _messageCtrl.dispose();
-//     super.dispose();
-//   }
-//
-//   bool get _isFormValid =>
-//       _validateName(_nameCtrl.text) == null &&
-//       _validateEmail(_emailCtrl.text) == null &&
-//       _validateMessage(_messageCtrl.text) == null;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final theme = Theme.of(context);
-//     final colorScheme = theme.colorScheme;
-//     final textTheme = theme.textTheme;
-//     final isDark = theme.brightness == Brightness.dark;
-//
-//     return LayoutBuilder(
-//       builder: (context, constraints) {
-//         // Define breakpoint for mobile (700 is a good default for Flutter web/desktop/app)
-//         final bool isMobile = constraints.maxWidth < 700;
-//
-//         // All values are adaptive!
-//         final headingSize = isMobile ? 22.0 : 36.0;
-//         final descriptionSize = isMobile ? 12.5 : 16.0;
-//         final emailFontSize = isMobile ? 12.5 : 16.0;
-//         final boxPaddingV = isMobile ? 26.0 : 80.0;
-//         final boxPaddingH = isMobile ? 8.0 : 24.0;
-//         final formPadding = isMobile ? 10.0 : 32.0;
-//         final contentSpacing = isMobile ? 15.0 : 36.0;
-//         final labelFontSize = isMobile ? 12.0 : 14.5;
-//         final inputVerticalPad = isMobile ? 9.0 : 18.0;
-//         final buttonPaddingV = isMobile ? 13.0 : 18.0;
-//         final buttonFontSize = isMobile ? 13.5 : 16.0;
-//
-//         return Container(
-//           // color: colorScheme.surface,
-//           width: double.infinity,
-//           padding: EdgeInsets.symmetric(
-//             vertical: boxPaddingV,
-//             horizontal: boxPaddingH,
-//           ),
-//           child: Center(
-//             child: ConstrainedBox(
-//               constraints: BoxConstraints(maxWidth: isMobile ? 400 : 750),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   // --- Section Title ---
-//                   Text(
-//                     "Get in Touch",
-//                     style:
-//                         textTheme.headlineMedium?.copyWith(
-//                           fontSize: headingSize,
-//                           fontWeight: FontWeight.bold,
-//                           color: colorScheme.onSurface,
-//                           letterSpacing: -1.2,
-//                         ) ??
-//                         TextStyle(
-//                           fontSize: headingSize,
-//                           fontWeight: FontWeight.bold,
-//                           color: colorScheme.onSurface,
-//                           letterSpacing: -1.2,
-//                         ),
-//                   ),
-//                   SizedBox(height: isMobile ? 10 : 18),
-//                   RichText(
-//                     text: TextSpan(
-//                       style:
-//                           textTheme.bodyMedium?.copyWith(
-//                             fontSize: descriptionSize,
-//                             color: colorScheme.onSurface.withOpacity(0.7),
-//                             height: 1.55,
-//                           ) ??
-//                           TextStyle(
-//                             fontSize: descriptionSize,
-//                             color: colorScheme.onSurface.withOpacity(0.7),
-//                             height: 1.55,
-//                           ),
-//                       children: [
-//                         TextSpan(
-//                           text:
-//                               "I'd love to hear from you — whether it's a project, a question, or just to say hi! Fill out the form below or reach me directly at ",
-//                         ),
-//                         WidgetSpan(
-//                           alignment: PlaceholderAlignment.middle,
-//                           child: GestureDetector(
-//                             onTap: () {
-//                               final Uri emailLaunchUri = Uri(
-//                                 scheme: 'mailto',
-//                                 path: 'REMOVED_EMAIL',
-//                               );
-//                               launchUrl(emailLaunchUri);
-//                             },
-//                             child: Text(
-//                               "REMOVED_EMAIL",
-//                               style: TextStyle(
-//                                 color: colorScheme.primary,
-//                                 fontSize: emailFontSize,
-//                                 fontWeight: FontWeight.w500,
-//                                 letterSpacing: 0.4,
-//                                 decorationColor: colorScheme.primary,
-//                                 decorationThickness: 0.8,
-//                                 decoration: TextDecoration.underline,
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                   SizedBox(height: contentSpacing),
-//
-//                   // --- CONTACT FORM ---
-//                   Material(
-//                     elevation: isDark ? 2 : 0,
-//                     borderRadius: BorderRadius.circular(14),
-//                     color: isDark
-//                         ? colorScheme.surfaceContainer
-//                         : colorScheme.surfaceContainerLowest,
-//                     shadowColor: colorScheme.shadow.withOpacity(0.1),
-//                     child: Padding(
-//                       padding: EdgeInsets.all(formPadding),
-//                       child: Form(
-//                         key: _formKey,
-//                         autovalidateMode: _autoValidate
-//                             ? AutovalidateMode.always
-//                             : AutovalidateMode.disabled,
-//                         child: Column(
-//                           crossAxisAlignment: CrossAxisAlignment.stretch,
-//                           children: [
-//                             // Name Field
-//                             TextFormField(
-//                               controller: _nameCtrl,
-//                               style: textTheme.bodyMedium?.copyWith(
-//                                 fontSize: labelFontSize + 1,
-//                                 color: colorScheme.onSurface,
-//                               ),
-//                               decoration: InputDecoration(
-//                                 labelText: "Name",
-//                                 labelStyle: textTheme.labelMedium?.copyWith(
-//                                   fontSize: labelFontSize,
-//                                   color: colorScheme.onSurface.withOpacity(0.7),
-//                                 ),
-//                                 border: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.outline,
-//                                   ),
-//                                 ),
-//                                 enabledBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.outline,
-//                                   ),
-//                                 ),
-//                                 focusedBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.primary,
-//                                     width: 2,
-//                                   ),
-//                                 ),
-//                                 errorBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.error,
-//                                   ),
-//                                 ),
-//                                 focusedErrorBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.error,
-//                                     width: 2,
-//                                   ),
-//                                 ),
-//                                 filled: true,
-//                                 fillColor: colorScheme.surface,
-//                                 contentPadding: EdgeInsets.symmetric(
-//                                   vertical: inputVerticalPad,
-//                                   horizontal: 12,
-//                                 ),
-//                               ),
-//                               validator: _validateName,
-//                               onChanged: (v) => setState(() {}),
-//                             ),
-//                             SizedBox(height: isMobile ? 14 : 22),
-//                             // Email Field
-//                             TextFormField(
-//                               controller: _emailCtrl,
-//                               style: textTheme.bodyMedium?.copyWith(
-//                                 fontSize: labelFontSize + 1,
-//                                 color: colorScheme.onSurface,
-//                               ),
-//                               decoration: InputDecoration(
-//                                 labelText: "Email",
-//                                 labelStyle: textTheme.labelMedium?.copyWith(
-//                                   fontSize: labelFontSize,
-//                                   color: colorScheme.onSurface.withOpacity(0.7),
-//                                 ),
-//                                 border: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.outline,
-//                                   ),
-//                                 ),
-//                                 enabledBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.outline,
-//                                   ),
-//                                 ),
-//                                 focusedBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.primary,
-//                                     width: 2,
-//                                   ),
-//                                 ),
-//                                 errorBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.error,
-//                                   ),
-//                                 ),
-//                                 focusedErrorBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.error,
-//                                     width: 2,
-//                                   ),
-//                                 ),
-//                                 filled: true,
-//                                 fillColor: colorScheme.surface,
-//                                 contentPadding: EdgeInsets.symmetric(
-//                                   vertical: inputVerticalPad,
-//                                   horizontal: 12,
-//                                 ),
-//                               ),
-//                               validator: _validateEmail,
-//                               keyboardType: TextInputType.emailAddress,
-//                               onChanged: (v) => setState(() {}),
-//                             ),
-//                             SizedBox(height: isMobile ? 14 : 22),
-//                             // Message Field
-//                             TextFormField(
-//                               controller: _messageCtrl,
-//                               maxLines: 4,
-//                               style: textTheme.bodyMedium?.copyWith(
-//                                 fontSize: labelFontSize + 1,
-//                                 color: colorScheme.onSurface,
-//                               ),
-//                               decoration: InputDecoration(
-//                                 labelText: "Your Message",
-//                                 labelStyle: textTheme.labelMedium?.copyWith(
-//                                   fontSize: labelFontSize,
-//                                   color: colorScheme.onSurface.withOpacity(0.7),
-//                                 ),
-//                                 border: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.outline,
-//                                   ),
-//                                 ),
-//                                 enabledBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.outline,
-//                                   ),
-//                                 ),
-//                                 focusedBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.primary,
-//                                     width: 2,
-//                                   ),
-//                                 ),
-//                                 errorBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.error,
-//                                   ),
-//                                 ),
-//                                 focusedErrorBorder: OutlineInputBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                   borderSide: BorderSide(
-//                                     color: colorScheme.error,
-//                                     width: 2,
-//                                   ),
-//                                 ),
-//                                 filled: true,
-//                                 fillColor: colorScheme.surface,
-//                                 contentPadding: EdgeInsets.symmetric(
-//                                   vertical: inputVerticalPad,
-//                                   horizontal: 12,
-//                                 ),
-//                               ),
-//                               validator: _validateMessage,
-//                               onChanged: (v) => setState(() {}),
-//                             ),
-//                             SizedBox(height: isMobile ? 20 : 32),
-//                             ElevatedButton.icon(
-//                               onPressed: _isFormValid && !_isSending
-//                                   ? _submitForm
-//                                   : null,
-//                               style: ElevatedButton.styleFrom(
-//                                 backgroundColor: colorScheme.primary,
-//                                 foregroundColor: colorScheme.onPrimary,
-//                                 disabledBackgroundColor: colorScheme.onSurface
-//                                     .withOpacity(0.12),
-//                                 disabledForegroundColor: colorScheme.onSurface
-//                                     .withOpacity(0.38),
-//                                 padding: EdgeInsets.symmetric(
-//                                   vertical: buttonPaddingV,
-//                                 ),
-//                                 shape: RoundedRectangleBorder(
-//                                   borderRadius: BorderRadius.circular(8),
-//                                 ),
-//                                 elevation: isDark ? 1 : 2,
-//                                 shadowColor: colorScheme.shadow.withOpacity(
-//                                   0.3,
-//                                 ),
-//                               ),
-//                               icon: _isSending
-//                                   ? SizedBox(
-//                                       width: 16,
-//                                       height: 16,
-//                                       child: CircularProgressIndicator(
-//                                         color: colorScheme.onPrimary,
-//                                         strokeWidth: 2.1,
-//                                       ),
-//                                     )
-//                                   : Icon(
-//                                       Icons.send_rounded,
-//                                       color: colorScheme.onPrimary,
-//                                     ),
-//                               label: Text(
-//                                 _isSending ? 'Sending...' : 'Send Message',
-//                                 style:
-//                                     textTheme.labelLarge?.copyWith(
-//                                       color: colorScheme.onPrimary,
-//                                       fontWeight: FontWeight.w500,
-//                                       fontSize: buttonFontSize,
-//                                     ) ??
-//                                     TextStyle(
-//                                       color: colorScheme.onPrimary,
-//                                       fontWeight: FontWeight.w500,
-//                                       fontSize: buttonFontSize,
-//                                     ),
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                   SizedBox(height: isMobile ? 16 : 34),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
-
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:portfolio_app/core/contents.dart';
+import 'package:portfolio_app/core/util.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EnhancedContactSectionWidget extends StatefulWidget {
   final void Function(String name, String email, String message)? onSend;
-  final String?
-  whatsappNumber; // WhatsApp number with country code (e.g., "+919876543210")
-  final String? emailAddress; // Email address for mailto
+  final String? whatsappNumber;
+  final String? emailAddress;
 
   const EnhancedContactSectionWidget({
     super.key,
     this.onSend,
-    this.whatsappNumber =
-        "+919876543210", // Default number - replace with yours
-    this.emailAddress = "REMOVED_EMAIL", // Default email
+    this.whatsappNumber = "REMOVED_PHONE",
+    this.emailAddress = "REMOVED_EMAIL",
   });
 
   @override
@@ -493,6 +35,14 @@ class _EnhancedContactSectionWidgetState
   late AnimationController _slideController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+
+  // Real-time validation states
+  bool _nameValid = false;
+  bool _emailValid = false;
+  bool _messageValid = false;
+  bool _nameTouched = false;
+  bool _emailTouched = false;
+  bool _messageTouched = false;
 
   @override
   void initState() {
@@ -516,6 +66,11 @@ class _EnhancedContactSectionWidgetState
 
     _fadeController.forward();
     _slideController.forward();
+
+    // Add listeners for real-time validation
+    _nameCtrl.addListener(_validateNameRealTime);
+    _emailCtrl.addListener(_validateEmailRealTime);
+    _messageCtrl.addListener(_validateMessageRealTime);
   }
 
   @override
@@ -526,6 +81,28 @@ class _EnhancedContactSectionWidgetState
     _fadeController.dispose();
     _slideController.dispose();
     super.dispose();
+  }
+
+  // Real-time validation methods
+  void _validateNameRealTime() {
+    setState(() {
+      _nameTouched = true;
+      _nameValid = _validateName(_nameCtrl.text) == null;
+    });
+  }
+
+  void _validateEmailRealTime() {
+    setState(() {
+      _emailTouched = true;
+      _emailValid = _validateEmail(_emailCtrl.text) == null;
+    });
+  }
+
+  void _validateMessageRealTime() {
+    setState(() {
+      _messageTouched = true;
+      _messageValid = _validateMessage(_messageCtrl.text) == null;
+    });
   }
 
   String? _validateName(String? value) {
@@ -611,62 +188,72 @@ class _EnhancedContactSectionWidgetState
       if (widget.onSend != null) {
         widget.onSend!(name, email, message);
       } else {
-        final theme = Theme.of(context);
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  Icon(Icons.check_circle, color: Colors.white),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Thank you, $name! Your message has been sent successfully.',
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+              duration: const Duration(seconds: 4),
+              action: SnackBarAction(
+                label: 'Dismiss',
+                textColor: Colors.white,
+                onPressed: () {
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                },
+              ),
+            ),
+          );
+        }
+
+        // Clear form and reset validation states
+        _formKey.currentState!.reset();
+        _nameCtrl.clear();
+        _emailCtrl.clear();
+        _messageCtrl.clear();
+        setState(() {
+          _autoValidate = false;
+          _nameTouched = false;
+          _emailTouched = false;
+          _messageTouched = false;
+          _nameValid = false;
+          _emailValid = false;
+          _messageValid = false;
+        });
+      }
+    } catch (e) {
+      setState(() => _isSending = false);
+      if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Row(
               children: [
-                Icon(Icons.check_circle, color: Colors.white),
+                Icon(Icons.error, color: Colors.white),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    'Thank you, $name! Your message has been sent successfully.',
+                    'Failed to send message. Please try again.',
                     style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
               ],
             ),
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.red,
             behavior: SnackBarBehavior.floating,
-            duration: const Duration(seconds: 4),
-            action: SnackBarAction(
-              label: 'Dismiss',
-              textColor: Colors.white,
-              onPressed: () {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              },
-            ),
           ),
         );
-
-        // Clear form
-        _formKey.currentState!.reset();
-        _nameCtrl.clear();
-        _emailCtrl.clear();
-        _messageCtrl.clear();
-        setState(() => _autoValidate = false);
       }
-    } catch (e) {
-      setState(() => _isSending = false);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Row(
-            children: [
-              Icon(Icons.error, color: Colors.white),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  'Failed to send message. Please try again.',
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-            ],
-          ),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
     }
   }
 
@@ -723,10 +310,7 @@ class _EnhancedContactSectionWidgetState
     }
   }
 
-  bool get _isFormValid =>
-      _validateName(_nameCtrl.text) == null &&
-      _validateEmail(_emailCtrl.text) == null &&
-      _validateMessage(_messageCtrl.text) == null;
+  bool get _isFormValid => _nameValid && _emailValid && _messageValid;
 
   @override
   Widget build(BuildContext context) {
@@ -742,7 +326,6 @@ class _EnhancedContactSectionWidgetState
         // Responsive values
         final headingSize = isMobile ? 24.0 : 40.0;
         final descriptionSize = isMobile ? 13.0 : 17.0;
-        final emailFontSize = isMobile ? 13.0 : 17.0;
         final boxPaddingV = isMobile ? 32.0 : 80.0;
         final boxPaddingH = isMobile ? 16.0 : 32.0;
         final formPadding = isMobile ? 16.0 : 40.0;
@@ -752,240 +335,475 @@ class _EnhancedContactSectionWidgetState
         final buttonPaddingV = isMobile ? 16.0 : 20.0;
         final buttonFontSize = isMobile ? 14.0 : 16.0;
 
-        return FadeTransition(
-          opacity: _fadeAnimation,
-          child: SlideTransition(
-            position: _slideAnimation,
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                vertical: boxPaddingV,
-                horizontal: boxPaddingH,
-              ),
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: isMobile ? 450 : 800),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Header Section
-                      Text(
-                        "Get in Touch",
-                        style: textTheme.headlineLarge?.copyWith(
-                          fontSize: headingSize,
-                          fontWeight: FontWeight.bold,
-                          color: colorScheme.onSurface,
-                          letterSpacing: -1.5,
-                        ),
+        return Column(
+          children: [
+            // Contact Section
+            FadeTransition(
+              opacity: _fadeAnimation,
+              child: SlideTransition(
+                position: _slideAnimation,
+                child: Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                    vertical: boxPaddingV,
+                    horizontal: boxPaddingH,
+                  ),
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: isMobile ? 450 : 800,
+                        // maxHeight: MediaQuery.of(context).size.height,
                       ),
-                      SizedBox(height: isMobile ? 12 : 20),
-
-                      RichText(
-                        text: TextSpan(
-                          style: textTheme.bodyLarge?.copyWith(
-                            fontSize: descriptionSize,
-                            color: colorScheme.onSurface.withOpacity(0.7),
-                            height: 1.6,
-                          ),
-                          children: [
-                            const TextSpan(
-                              text:
-                                  "I'd love to hear from you! Whether it's about a project, collaboration, or just to say hello. ",
-                            ),
-                            const TextSpan(
-                              text:
-                                  "You can fill out the form below or reach me directly via email or WhatsApp.",
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: contentSpacing),
-
-                      // Quick Contact Buttons
-                      Row(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: _buildContactButton(
-                              icon: Icons.email_outlined,
-                              label: 'Email Me',
-                              onTap: _launchEmail,
-                              color: colorScheme.primary,
-                              isMobile: isMobile,
+                          // Header Section
+                          Text(
+                            "Get in Touch",
+                            style: textTheme.headlineLarge?.copyWith(
+                              fontSize: headingSize,
+                              fontWeight: FontWeight.bold,
+                              color: colorScheme.onSurface,
+                              letterSpacing: -1.5,
                             ),
                           ),
-                          SizedBox(width: isMobile ? 12 : 16),
-                          Expanded(
-                            child: _buildContactButton(
-                              icon: Icons.chat_bubble_outline,
-                              label: 'WhatsApp',
-                              onTap: _launchWhatsApp,
-                              color: const Color(0xFF038C37), // WhatsApp green
-                              isMobile: isMobile,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: isMobile ? 24 : 32),
+                          SizedBox(height: isMobile ? 12 : 20),
 
-                      // Divider with "OR" text
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Divider(
-                              color: colorScheme.outline.withOpacity(0.5),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Text(
-                              'OR',
-                              style: TextStyle(
-                                color: colorScheme.onSurface.withOpacity(0.6),
-                                fontWeight: FontWeight.w500,
-                                fontSize: isMobile ? 12 : 14,
+                          RichText(
+                            text: TextSpan(
+                              style: textTheme.bodyLarge?.copyWith(
+                                fontSize: descriptionSize,
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.7,
+                                ),
+                                height: 1.6,
                               ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Divider(
-                              color: colorScheme.outline.withOpacity(0.5),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: isMobile ? 24 : 32),
-
-                      // Contact Form
-                      Material(
-                        elevation: isDark ? 4 : 2,
-                        borderRadius: BorderRadius.circular(16),
-                        color: isDark
-                            ? colorScheme.surfaceContainer
-                            : colorScheme.surfaceContainerLowest,
-                        shadowColor: colorScheme.shadow.withOpacity(0.1),
-                        child: Padding(
-                          padding: EdgeInsets.all(formPadding),
-                          child: Form(
-                            key: _formKey,
-                            autovalidateMode: _autoValidate
-                                ? AutovalidateMode.always
-                                : AutovalidateMode.disabled,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                Text(
-                                  'Send me a message',
-                                  style: textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    color: colorScheme.onSurface,
-                                    fontSize: isMobile ? 16 : 18,
-                                  ),
+                                const TextSpan(
+                                  text:
+                                      "I'd love to hear from you! Whether it's about a project, collaboration, or just to say hello. ",
                                 ),
-                                SizedBox(height: isMobile ? 20 : 24),
-
-                                // Name Field
-                                _buildTextField(
-                                  controller: _nameCtrl,
-                                  label: "Full Name",
-                                  validator: _validateName,
-                                  prefixIcon: Icons.person_outline,
-                                  textInputAction: TextInputAction.next,
-                                  isMobile: isMobile,
-                                  labelFontSize: labelFontSize,
-                                  inputVerticalPad: inputVerticalPad,
-                                ),
-                                SizedBox(height: isMobile ? 16 : 24),
-
-                                // Email Field
-                                _buildTextField(
-                                  controller: _emailCtrl,
-                                  label: "Email Address",
-                                  validator: _validateEmail,
-                                  prefixIcon: Icons.email_outlined,
-                                  keyboardType: TextInputType.emailAddress,
-                                  textInputAction: TextInputAction.next,
-                                  isMobile: isMobile,
-                                  labelFontSize: labelFontSize,
-                                  inputVerticalPad: inputVerticalPad,
-                                ),
-                                SizedBox(height: isMobile ? 16 : 24),
-
-                                // Message Field
-                                _buildTextField(
-                                  controller: _messageCtrl,
-                                  label: "Your Message",
-                                  validator: _validateMessage,
-                                  prefixIcon: Icons.message_outlined,
-                                  maxLines: 5,
-                                  textInputAction: TextInputAction.done,
-                                  isMobile: isMobile,
-                                  labelFontSize: labelFontSize,
-                                  inputVerticalPad: inputVerticalPad,
-                                ),
-                                SizedBox(height: isMobile ? 24 : 32),
-
-                                // Submit Button
-                                ElevatedButton.icon(
-                                  onPressed: _isFormValid && !_isSending
-                                      ? _submitForm
-                                      : null,
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: colorScheme.primary,
-                                    foregroundColor: colorScheme.onPrimary,
-                                    disabledBackgroundColor: colorScheme
-                                        .onSurface
-                                        .withOpacity(0.12),
-                                    disabledForegroundColor: colorScheme
-                                        .onSurface
-                                        .withOpacity(0.38),
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: buttonPaddingV,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    elevation: isDark ? 2 : 4,
-                                    shadowColor: colorScheme.shadow.withOpacity(
-                                      0.3,
-                                    ),
-                                  ),
-                                  icon: _isSending
-                                      ? SizedBox(
-                                          width: 20,
-                                          height: 20,
-                                          child: CircularProgressIndicator(
-                                            color: colorScheme.onPrimary,
-                                            strokeWidth: 2.5,
-                                          ),
-                                        )
-                                      : Icon(
-                                          Icons.send_rounded,
-                                          size: isMobile ? 18 : 20,
-                                        ),
-                                  label: Text(
-                                    _isSending
-                                        ? 'Sending Message...'
-                                        : 'Send Message',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: buttonFontSize,
-                                    ),
-                                  ),
+                                const TextSpan(
+                                  text:
+                                      "You can fill out the form below or reach me directly via email or WhatsApp.",
                                 ),
                               ],
                             ),
                           ),
-                        ),
+                          SizedBox(height: contentSpacing),
+
+                          // Quick Contact Buttons
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _buildContactButton(
+                                  icon: Icons.email_outlined,
+                                  label: 'Email Me',
+                                  onTap: _launchEmail,
+                                  color: colorScheme.primary,
+                                  isMobile: isMobile,
+                                ),
+                              ),
+                              SizedBox(width: isMobile ? 12 : 16),
+                              Expanded(
+                                child: _buildContactButton(
+                                  icon: Icons.chat_bubble_outline,
+                                  label: 'WhatsApp',
+                                  onTap: _launchWhatsApp,
+                                  color: const Color(0xFF038C37),
+                                  isMobile: isMobile,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: isMobile ? 24 : 32),
+
+                          // Divider with "OR" text
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: colorScheme.outline.withValues(
+                                    alpha: 0.5,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: Text(
+                                  'OR',
+                                  style: TextStyle(
+                                    color: colorScheme.onSurface.withValues(
+                                      alpha: 0.6,
+                                    ),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: isMobile ? 12 : 14,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: colorScheme.outline.withValues(
+                                    alpha: 0.5,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: isMobile ? 24 : 32),
+
+                          // Contact Form
+                          Material(
+                            elevation: isDark ? 4 : 2,
+                            borderRadius: BorderRadius.circular(16),
+                            color: isDark
+                                ? colorScheme.surfaceContainer
+                                : colorScheme.surfaceContainerLowest,
+                            shadowColor: colorScheme.shadow.withValues(
+                              alpha: 0.1,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(formPadding),
+                              child: Form(
+                                key: _formKey,
+                                autovalidateMode: _autoValidate
+                                    ? AutovalidateMode.always
+                                    : AutovalidateMode.disabled,
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text(
+                                      'Send me a message',
+                                      style: textTheme.titleMedium?.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        color: colorScheme.onSurface,
+                                        fontSize: isMobile ? 16 : 18,
+                                      ),
+                                    ),
+                                    SizedBox(height: isMobile ? 20 : 24),
+
+                                    // Name Field
+                                    _buildTextField(
+                                      controller: _nameCtrl,
+                                      label: "Full Name",
+                                      validator: _validateName,
+                                      prefixIcon: Icons.person_outline,
+                                      textInputAction: TextInputAction.next,
+                                      isMobile: isMobile,
+                                      labelFontSize: labelFontSize,
+                                      inputVerticalPad: inputVerticalPad,
+                                      isValid: _nameValid,
+                                      isTouched: _nameTouched,
+                                    ),
+                                    SizedBox(height: isMobile ? 16 : 24),
+
+                                    // Email Field
+                                    _buildTextField(
+                                      controller: _emailCtrl,
+                                      label: "Email Address",
+                                      validator: _validateEmail,
+                                      prefixIcon: Icons.email_outlined,
+                                      keyboardType: TextInputType.emailAddress,
+                                      textInputAction: TextInputAction.next,
+                                      isMobile: isMobile,
+                                      labelFontSize: labelFontSize,
+                                      inputVerticalPad: inputVerticalPad,
+                                      isValid: _emailValid,
+                                      isTouched: _emailTouched,
+                                    ),
+                                    SizedBox(height: isMobile ? 16 : 24),
+
+                                    // Message Field
+                                    _buildTextField(
+                                      controller: _messageCtrl,
+                                      label: "Your Message",
+                                      validator: _validateMessage,
+                                      prefixIcon: Icons.message_outlined,
+                                      maxLines: 2,
+                                      textInputAction: TextInputAction.done,
+                                      isMobile: isMobile,
+                                      labelFontSize: labelFontSize,
+                                      inputVerticalPad: inputVerticalPad,
+                                      isValid: _messageValid,
+                                      isTouched: _messageTouched,
+                                    ),
+                                    SizedBox(height: isMobile ? 24 : 32),
+
+                                    // Submit Button with validation indicator
+                                    AnimatedContainer(
+                                      duration: const Duration(
+                                        milliseconds: 200,
+                                      ),
+                                      child: ElevatedButton.icon(
+                                        onPressed: _isFormValid && !_isSending
+                                            ? _submitForm
+                                            : null,
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: _isFormValid
+                                              ? colorScheme.primary
+                                              : colorScheme.onSurface
+                                                    .withValues(alpha: 0.12),
+                                          foregroundColor: _isFormValid
+                                              ? colorScheme.onPrimary
+                                              : colorScheme.onSurface
+                                                    .withValues(alpha: 0.38),
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: buttonPaddingV,
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                          ),
+                                          elevation: _isFormValid
+                                              ? (isDark ? 2 : 4)
+                                              : 0,
+                                          shadowColor: colorScheme.shadow
+                                              .withValues(alpha: 0.3),
+                                        ),
+                                        icon: _isSending
+                                            ? SizedBox(
+                                                width: 20,
+                                                height: 20,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                      color:
+                                                          colorScheme.onPrimary,
+                                                      strokeWidth: 2.5,
+                                                    ),
+                                              )
+                                            : Icon(
+                                                Icons.send_rounded,
+                                                size: isMobile ? 18 : 20,
+                                              ),
+                                        label: Text(
+                                          _isSending
+                                              ? 'Sending Message...'
+                                              : 'Send Message',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: buttonFontSize,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: isMobile ? 20 : 32),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+
+            // Footer Section
+            _buildFooter(isMobile, colorScheme, textTheme),
+          ],
         );
       },
+    );
+  }
+
+  Widget _buildFooter(
+    bool isMobile,
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+  ) {
+    return Column(
+      children: [
+        // Main Footer Content
+        Center(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: isMobile ? 24 : 32,
+                  horizontal: isMobile ? 20 : 32,
+                ),
+                // decoration: BoxDecoration(
+                //   color: colorScheme.surfaceContainerHighest.withValues(
+                //     alpha: 0.2,
+                //   ),
+                //   borderRadius: BorderRadius.circular(isMobile ? 16 : 20),
+                //   border: Border.all(
+                //     color: colorScheme.outline.withValues(alpha: 0.1),
+                //     width: 1,
+                //   ),
+                // ),
+                child: Column(
+                  children: [
+                    // Name
+                    // Text(
+                    //   'VISHNU S',
+                    //   style: textTheme.headlineSmall?.copyWith(
+                    //     color: colorScheme.onSurface,
+                    //     fontWeight: FontWeight.w700,
+                    //     fontSize: isMobile ? 28 : 36,
+                    //     letterSpacing: 2.0,
+                    //   ),
+                    // ),
+
+                    // SizedBox(height: isMobile ? 16 : 20),
+                    // Contact Info Row 1: Email & Phone
+                    if (isMobile) ...[
+                      // Mobile: Stack vertically
+                      _buildContactInfo(
+                        icon: Icons.email_outlined,
+                        text: 'REMOVED_EMAIL',
+                        colorScheme: colorScheme,
+                        isMobile: isMobile,
+                        assetPath: 'assets/icons/email.png',
+                      ),
+                      SizedBox(height: 8),
+                      _buildContactInfo(
+                        icon: Icons.phone_outlined,
+                        text: 'REMOVED_PHONE',
+                        colorScheme: colorScheme,
+                        isMobile: isMobile,
+
+                        assetPath: 'assets/icons/phone.png',
+                      ),
+                      SizedBox(height: 12),
+                      _buildContactInfo(
+                        icon: Icons.work_outline,
+                        text: 'linkedin.com/in/vishnus14',
+                        colorScheme: colorScheme,
+                        isMobile: isMobile,
+                        url: Contents.myLinkedInUrl,
+                        assetPath: 'assets/icons/linkedin.png',
+                      ),
+                      SizedBox(height: 8),
+                      _buildContactInfo(
+                        icon: Icons.code,
+                        text: 'github.com/vishnusukumar14',
+                        colorScheme: colorScheme,
+                        isMobile: isMobile,
+                        assetPath: '/logos/github_logo.png',
+                        url: Contents.myGithubUrl,
+                      ),
+                    ] else ...[
+                      // Desktop: Two rows
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildContactInfo(
+                            icon: Icons.email_outlined,
+                            text: 'REMOVED_EMAIL',
+                            colorScheme: colorScheme,
+                            isMobile: isMobile,
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 16),
+                            width: 1,
+                            height: 20,
+                            color: colorScheme.outline.withValues(alpha: 0.3),
+                          ),
+                          _buildContactInfo(
+                            icon: Icons.phone_outlined,
+                            text: 'REMOVED_PHONE',
+                            colorScheme: colorScheme,
+                            isMobile: isMobile,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildContactInfo(
+                            icon: Icons.work_outline,
+                            text: 'linkedin.com/in/vishnus14',
+                            colorScheme: colorScheme,
+                            isMobile: isMobile,
+                            url: Contents.myLinkedInUrl,
+                            assetPath: Contents.linkedInLogoMarkAssetPath,
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 16),
+                            width: 1,
+                            height: 20,
+                            color: colorScheme.outline.withValues(alpha: 0.3),
+                          ),
+                          _buildContactInfo(
+                            icon: Icons.code,
+                            text: 'github.com/vishnusukumar14',
+                            colorScheme: colorScheme,
+                            isMobile: isMobile,
+                            url: Contents.myGithubUrl,
+                            assetPath: Contents.githubMarkAssetPath,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContactInfo({
+    required IconData icon,
+    required String text,
+    required ColorScheme colorScheme,
+    required bool isMobile,
+    String? assetPath,
+    String? url,
+  }) {
+    return InkWell(
+      onTap: url != null
+          ? () async {
+              Utils.launch(url);
+            }
+          : null,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: isMobile ? 16 : 18,
+            height: isMobile ? 16 : 18,
+            child: assetPath != null
+                ? Image.asset(
+                    assetPath,
+                    width: isMobile ? 16 : 18,
+                    height: isMobile ? 16 : 18,
+                    fit: BoxFit.contain,
+                    color: colorScheme.primary,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(
+                        icon,
+                        size: isMobile ? 16 : 18,
+                        color: colorScheme.primary,
+                      );
+                    },
+                  )
+                : Icon(
+                    icon,
+                    size: isMobile ? 16 : 18,
+                    color: colorScheme.primary,
+                  ),
+          ),
+          SizedBox(width: 8),
+          SelectableText(
+            text,
+            style: TextStyle(
+              color: colorScheme.onSurface.withOpacity(0.8),
+              fontSize: isMobile ? 14 : 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -996,8 +814,6 @@ class _EnhancedContactSectionWidgetState
     required Color color,
     required bool isMobile,
   }) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -1009,9 +825,9 @@ class _EnhancedContactSectionWidgetState
             horizontal: isMobile ? 12 : 16,
           ),
           decoration: BoxDecoration(
-            border: Border.all(color: color.withOpacity(0.3)),
+            border: Border.all(color: color.withValues(alpha: 0.3)),
             borderRadius: BorderRadius.circular(12),
-            color: color.withOpacity(0.08),
+            color: color.withValues(alpha: 0.08),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -1044,9 +860,21 @@ class _EnhancedContactSectionWidgetState
     required bool isMobile,
     required double labelFontSize,
     required double inputVerticalPad,
+    required bool isValid,
+    required bool isTouched,
   }) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+
+    // Determine suffix icon based on validation state
+    Widget? suffixIcon;
+    if (isTouched) {
+      if (isValid) {
+        suffixIcon = Icon(Icons.check_circle, color: Colors.green, size: 20);
+      } else if (controller.text.isNotEmpty) {
+        suffixIcon = Icon(Icons.error, color: colorScheme.error, size: 20);
+      }
+    }
 
     return TextFormField(
       controller: controller,
@@ -1061,11 +889,12 @@ class _EnhancedContactSectionWidgetState
         labelText: label,
         prefixIcon: Icon(
           prefixIcon,
-          color: colorScheme.onSurface.withOpacity(0.6),
+          color: colorScheme.onSurface.withValues(alpha: 0.6),
         ),
+        suffixIcon: suffixIcon,
         labelStyle: textTheme.labelMedium?.copyWith(
           fontSize: labelFontSize,
-          color: colorScheme.onSurface.withOpacity(0.7),
+          color: colorScheme.onSurface.withValues(alpha: 0.7),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -1073,11 +902,18 @@ class _EnhancedContactSectionWidgetState
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.outline),
+          borderSide: BorderSide(
+            color: isTouched && isValid
+                ? Colors.green.withValues(alpha: 0.7)
+                : colorScheme.outline,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.primary, width: 2),
+          borderSide: BorderSide(
+            color: isTouched && isValid ? Colors.green : colorScheme.primary,
+            width: 2,
+          ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
