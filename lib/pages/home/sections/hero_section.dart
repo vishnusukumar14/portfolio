@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/core/contents.dart';
 
 class HeroSectionWidget extends StatelessWidget {
   final VoidCallback onGetInTouchPressed;
@@ -75,7 +76,9 @@ class HeroSectionWidget extends StatelessWidget {
             // Enhanced shadow for better depth
             boxShadow: [
               BoxShadow(
-                color: isDark ? Colors.black26 : Colors.grey.withOpacity(0.2),
+                color: isDark
+                    ? Colors.black26
+                    : Colors.grey.withValues(alpha: 0.2),
                 blurRadius: 12,
                 offset: const Offset(0, 6),
               ),
@@ -127,10 +130,10 @@ class HeroSectionWidget extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "Software",
-                          style: textTheme.displayMedium?.copyWith(
+                          style: textTheme.displaySmall?.copyWith(
                             fontFamily: 'Bitcount Prop Single',
                             fontSize: headlineSize,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             color: primaryTextColor,
                             letterSpacing: isMobile ? -0.5 : -1,
                             height: 1.1,
@@ -141,7 +144,7 @@ class HeroSectionWidget extends StatelessWidget {
                           style: textTheme.displayMedium?.copyWith(
                             fontFamily: 'Bitcount Prop Single',
                             fontSize: headlineSize,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             color: accentColor,
                             letterSpacing: isMobile ? -0.5 : -1,
                             height: 1.1,
@@ -152,7 +155,7 @@ class HeroSectionWidget extends StatelessWidget {
                           style: textTheme.displayMedium?.copyWith(
                             fontFamily: 'Bitcount Prop Single',
                             fontSize: headlineSize,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             color: primaryTextColor,
                             letterSpacing: isMobile ? -0.5 : -1,
                             height: 1.1,
@@ -167,7 +170,7 @@ class HeroSectionWidget extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: isMobile ? 8 : 0),
                     child: Text(
-                      "I love building apps that are fast, clean, and a joy to use—whether in Flutter or native Android—with a strong focus on smooth user experience and scalable architecture",
+                      Contents.heroSectionDescription,
                       style: textTheme.bodyLarge?.copyWith(
                         fontSize: bodySize,
                         color: secondaryTextColor,
@@ -244,26 +247,24 @@ class HeroSectionWidget extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ).copyWith(
-                                overlayColor: MaterialStateProperty.resolveWith(
-                                  (states) {
-                                    if (states.contains(
-                                      MaterialState.hovered,
-                                    )) {
-                                      return primaryTextColor.withOpacity(0.05);
-                                    }
-                                    if (states.contains(
-                                      MaterialState.pressed,
-                                    )) {
-                                      return primaryTextColor.withOpacity(0.1);
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                side: MaterialStateProperty.resolveWith((
+                                overlayColor: WidgetStateProperty.resolveWith((
                                   states,
                                 ) {
-                                  if (states.contains(MaterialState.focused) ||
-                                      states.contains(MaterialState.hovered)) {
+                                  if (states.contains(WidgetState.hovered)) {
+                                    return primaryTextColor.withValues(
+                                      alpha: 0.05,
+                                    );
+                                  }
+                                  if (states.contains(WidgetState.pressed)) {
+                                    return primaryTextColor.withValues(
+                                      alpha: 0.1,
+                                    );
+                                  }
+                                  return null;
+                                }),
+                                side: WidgetStateProperty.resolveWith((states) {
+                                  if (states.contains(WidgetState.focused) ||
+                                      states.contains(WidgetState.hovered)) {
                                     return BorderSide(
                                       color: colorScheme.primary,
                                       width: 2.0,

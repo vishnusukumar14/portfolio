@@ -14,13 +14,17 @@ class Contents {
   static const githubMarkAssetPath = "assets/logos/github_mark.png";
   static const githubLogoAssetPath = "assets/logos/github_logo.png";
 
+  static const heroSectionDescription =
+      "I love building apps that are fast, clean, and a joy to use—whether in Flutter or native Android—with a strong focus on smooth user experience and scalable architecture";
+
   static const aboutMeSectionDescription =
-      """I'm an enthusiastic Flutter developer with a strong interest in building smooth, scalable, and user-friendly cross-platform applications. During my academic projects and internship experience, I've worked with Flutter & Dart, focusing on clean architecture and efficient state management using tools like Riverpod, Bloc, and Provider.
-I've gained hands-on experience integrating REST APIs, Firebase, and MongoDB, and have built secure login systems and real-time features. I'm also familiar with Android development using Kotlin and Jetpack Compose, and have explored backend development using Python and Django.
+      """As a developer deeply invested in building seamless digital experiences, I specialize in creating high-performance, cross-platform applications using Flutter. From academic projects to real-world internship experience, I’ve honed my skills in Flutter & Dart, emphasizing clean architecture, modular code, and powerful state management with Riverpod, Bloc, and Provider.
 
-I enjoy debugging tough issues, optimizing performance, and crafting polished UI/UX. I'm eager to learn, build, and grow as a Flutter developer in a challenging and collaborative environment.
+I’ve successfully integrated REST APIs, Firebase, and MongoDB, building features like real-time messaging, secure authentication, and persistent offline storage. My experience extends to native Android development using Kotlin and Jetpack Compose, giving me a strong grasp of platform-specific optimization.
 
-Oh, and by the way—this entire website is built with Flutter too!""";
+I’m also exploring backend development with Python and Django, and continuously improving my workflow through CI/CD automation using GitHub Actions. Whether it’s deploying with confidence or debugging elusive runtime issues, I take pride in writing efficient, maintainable, and production-ready code.
+
+Performance tuning, UI/UX polish, and continuous learning are what keep me excited every day—and yes, this entire website was built with Flutter too!""";
 
   static const projectSectionDescription =
       "Hey! Here you'll find a collection of my personal experiments and projects — "

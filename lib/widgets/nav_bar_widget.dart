@@ -78,6 +78,8 @@ class NavBarWidget extends StatelessWidget {
   Widget _buildDesktopNav(BuildContext context, ColorScheme colorScheme) {
     return Row(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         _buildNavItem(
           context,

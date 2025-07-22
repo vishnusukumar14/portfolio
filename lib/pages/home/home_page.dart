@@ -14,10 +14,10 @@ class PortfolioHomePage extends StatefulWidget {
   const PortfolioHomePage({super.key});
 
   @override
-  _PortfolioHomePageState createState() => _PortfolioHomePageState();
+  PortfolioHomePageState createState() => PortfolioHomePageState();
 }
 
-class _PortfolioHomePageState extends State<PortfolioHomePage> {
+class PortfolioHomePageState extends State<PortfolioHomePage> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _homeKey = GlobalKey();
   final GlobalKey _aboutKey = GlobalKey();
@@ -84,15 +84,14 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
         child: CustomScrollView(
           controller: _scrollController,
           slivers: [
-            // Theme-aware App Bar
             SliverAppBar(
-              expandedHeight: 80,
+              expandedHeight: 72,
               floating: true,
               pinned: true,
-              backgroundColor: colorScheme.surface,
+              // backgroundColor: colorScheme.surface,
               surfaceTintColor: Colors.transparent,
               elevation: 0,
-              shadowColor: Colors.transparent,
+              // shadowColor: Colors.transparent,
               systemOverlayStyle: isDark
                   ? theme.appBarTheme.systemOverlayStyle?.copyWith(
                       statusBarBrightness: Brightness.dark,
@@ -108,7 +107,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                     gradient: LinearGradient(
                       colors: [
                         colorScheme.surface,
-                        colorScheme.surface.withValues(alpha: 0.95),
+                        colorScheme.surface.withValues(alpha: 0.85),
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -295,6 +294,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                 ),
               ),
             ),
+
             SliverToBoxAdapter(
               child: Container(
                 key: _contactKey,
