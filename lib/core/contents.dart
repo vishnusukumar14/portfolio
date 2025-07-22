@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'models/experience.dart';
 import 'models/project.dart';
 
 class Contents {
+  static const myLinkedInUrl = "https://www.linkedin.com/in/vishnus14/";
+  static const myGithubUrl = "https://github.com/vishnusukumar14";
+
+  static const linkedInLogoMarkAssetPath = "assets/logos/li_bug_mark.png";
+  static const linkedInLogoAssetPath = "assets/logos/li_logo.png";
+  static const githubMarkAssetPath = "assets/logos/github_mark.png";
+  static const githubLogoAssetPath = "assets/logos/github_logo.png";
+
   static const aboutMeSectionDescription =
       """I'm an enthusiastic Flutter developer with a strong interest in building smooth, scalable, and user-friendly cross-platform applications. During my academic projects and internship experience, I've worked with Flutter & Dart, focusing on clean architecture and efficient state management using tools like Riverpod, Bloc, and Provider.
 I've gained hands-on experience integrating REST APIs, Firebase, and MongoDB, and have built secure login systems and real-time features. I'm also familiar with Android development using Kotlin and Jetpack Compose, and have explored backend development using Python and Django.
@@ -165,13 +172,4 @@ Oh, and by the way—this entire website is built with Flutter too!""";
       languageColor: Colors.yellow,
     ),
   ];
-
-  static Future<void> launch(String url) async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } else {
-      debugPrint("Cannot launch URL: $url");
-    }
-  }
 }
