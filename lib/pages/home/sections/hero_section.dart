@@ -175,8 +175,7 @@ class HeroSectionWidget extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                       textAlign: isMobile ? TextAlign.center : TextAlign.start,
-                      maxLines: isMobile ? 4 : null,
-                      overflow: TextOverflow.ellipsis,
+                      // Removed maxLines and overflow to show full text
                     ),
                   ),
                 ),
