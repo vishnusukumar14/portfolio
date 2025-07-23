@@ -45,10 +45,11 @@ Whether I’m refining UI/UX details, debugging tough runtime issues, or optimiz
       duration: "Feb 2025 – June 2025",
       location: "Remote",
       highlights: [
-        "Led development of cross-platform apps using Flutter & Dart, focusing on high-performance, scalable, and responsive UIs.",
-        "Contributed to backend systems built with Python, Django, and gRPC.",
+        " Built cross-platform apps using Flutter, delivering responsive, high-performance UIs. ",
+        "Also developed native Android apps using Kotlin and Jetpack Compose for modern UI experiences.",
+        " Designed and implemented backend services in Go and Python (Django), applying clean architecture principles to build scalable, modular systems for production use.",
         "Utilized Firebase, FCM, and REST APIs for real-time features and backend integration.",
-        "Collaborated remotely using Git for version control and team coordination.",
+        "Integrated gRPC-based backend services with Flutter clients to enable real-time messaging, synchronization, and efficient communication across distributed components.",
       ],
       techStack: [
         "Flutter",
@@ -94,7 +95,7 @@ Whether I’m refining UI/UX details, debugging tough runtime issues, or optimiz
       location: "Onsite",
       highlights: [
         "Worked under faculty mentorship to develop Voigo, a hyperlocal platform connecting users with nearby kirana stores.",
-        "Bypassed traditional data storage via real-time order/inventory management.",
+        "Bypassed traditional data storage using real-time order and inventory management for faster, more efficient operations",
         "Built full-stack applications using Kotlin and Python Django; integrated Google Maps & live tracking.",
         "Implemented pilot deployments, conducted usability testing, and improved system based on feedback.",
       ],
