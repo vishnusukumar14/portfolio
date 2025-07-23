@@ -15,16 +15,18 @@ class Contents {
   static const githubLogoAssetPath = "assets/logos/github_logo.png";
 
   static const heroSectionDescription =
-      "I love building apps that are fast, clean, and a joy to use—whether in Flutter or native Android—with a strong focus on smooth user experience and scalable architecture";
+      "I love building performant and scalable applications—whether in Flutter, native Android, Django, or Go—focusing on clean, production-ready code, smooth user experiences, and maintainable architecture, while leveraging CI/CD workflows to streamline build and deployment.";
+  static const aboutMeSectionDescription = """
+Hi, I’m a versatile software developer with a passion for building fast, reliable, and beautifully crafted digital experiences. I specialize in cross-platform development using Flutter, creating smooth, scalable apps backed by clean architecture and modern state management tools like Riverpod, Bloc, and Provider.
+I’ve worked on everything from academic projects to real-world apps during internships and freelance collaborations. I’ve integrated complex features like real-time messaging, secure authentication, and offline-first data persistence using tools such as REST APIs, Firebase, and MongoDB.
 
-  static const aboutMeSectionDescription =
-      """As a developer deeply invested in building seamless digital experiences, I specialize in creating high-performance, cross-platform applications using Flutter. From academic projects to real-world internship experience, I’ve honed my skills in Flutter & Dart, emphasizing clean architecture, modular code, and powerful state management with Riverpod, Bloc, and Provider.
+In addition to Flutter, I bring hands-on experience in native Android development with Kotlin and Jetpack Compose, enabling me to optimize for platform-specific performance and deliver a seamless user experience.
 
-I’ve successfully integrated REST APIs, Firebase, and MongoDB, building features like real-time messaging, secure authentication, and persistent offline storage. My experience extends to native Android development using Kotlin and Jetpack Compose, giving me a strong grasp of platform-specific optimization.
+I also build backends using Python and Django, designing RESTful APIs with solid authentication systems and scalable data models. More recently, I’ve explored Go (Golang), completing projects that focus on high-performance API services and concurrent processing.
 
-I’m also exploring backend development with Python and Django, and continuously improving my workflow through CI/CD automation using GitHub Actions. Whether it’s deploying with confidence or debugging elusive runtime issues, I take pride in writing efficient, maintainable, and production-ready code.
+To ensure efficient development workflows, I leverage CI/CD pipelines with GitHub Actions, automating testing, builds, and deployments. This lets me ship with confidence and iterate quickly without compromising stability.
 
-Performance tuning, UI/UX polish, and continuous learning are what keep me excited every day—and yes, this entire website was built with Flutter too!""";
+Whether I’m refining UI/UX details, debugging tough runtime issues, or optimizing app performance, I take pride in writing clean, maintainable, and production-ready code. And yes—this entire website was built using Flutter too.""";
 
   static const projectSectionDescription =
       "Hey! Here you'll find a collection of my personal experiments and projects — "
