@@ -309,7 +309,7 @@ class HeroSectionWidget extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 maxWidth: isMobile ? constraints.maxWidth : 1200,
-                maxHeight: availableHeight - (isMobile ? 32 : 48),
+                maxHeight: availableHeight - (isMobile ? 56 : 48),
               ),
               child: isMobile
                   ? Column(

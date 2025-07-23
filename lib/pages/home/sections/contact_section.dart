@@ -663,7 +663,7 @@ class _EnhancedContactSectionWidgetState
                       SizedBox(height: 8),
                       _buildContactInfo(
                         icon: Icons.phone_outlined,
-                        text: 'REMOVED_PHONE',
+                        text: Contents.myPhoneNumber,
                         colorScheme: colorScheme,
                         isMobile: isMobile,
                       ),
@@ -674,7 +674,7 @@ class _EnhancedContactSectionWidgetState
                         colorScheme: colorScheme,
                         isMobile: isMobile,
                         url: Contents.myLinkedInUrl,
-                        assetPath: 'assets/icons/linkedin.png',
+                        assetPath: Contents.linkedInLogoAssetPath,
                       ),
                       SizedBox(height: 8),
                       _buildContactInfo(
@@ -682,7 +682,7 @@ class _EnhancedContactSectionWidgetState
                         text: 'github.com/vishnusukumar14',
                         colorScheme: colorScheme,
                         isMobile: isMobile,
-                        assetPath: '/logos/github_logo.png',
+                        assetPath: Contents.githubMarkAssetPath,
                         url: Contents.myGithubUrl,
                       ),
                     ] else ...[

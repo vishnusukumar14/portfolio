@@ -294,7 +294,7 @@ class PortfolioHomePageState extends State<PortfolioHomePage> {
                   ),
                 ),
                 child: EnhancedContactSectionWidget(
-                  whatsappNumber: Contents.myPhoneNumber,
+                  whatsappNumber: Contents.myPhoneNumber.replaceAll(" ", ""),
                   emailAddress: Contents.myEmailId,
                 ),
               ),
