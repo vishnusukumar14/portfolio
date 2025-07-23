@@ -20,7 +20,9 @@ class HeroSectionWidget extends StatelessWidget {
 
     // Enhanced theme-aware colors with better contrast
     final primaryTextColor = isDark ? Colors.white : Colors.black87;
-    final secondaryTextColor = isDark ? Colors.white70 : Colors.black54;
+    final secondaryTextColor = isDark
+        ? Colors.white70
+        : Colors.black87.withValues(alpha: 0.6);
     final accentColor = colorScheme.primary;
     final backgroundColor = isDark ? colorScheme.surface : Colors.white;
 
@@ -86,11 +88,26 @@ class HeroSectionWidget extends StatelessWidget {
           ),
           child: ClipOval(
             child: Image.asset(
-              'assets/1746809048028.jpeg',
+              Contents.myProfilePhotoAssetPath,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
-                  color: profileBgColor,
+                  decoration: BoxDecoration(
+                    color: profileBgColor,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.08)
+                            : Colors.blueAccent.withValues(
+                                alpha: 0.5,
+                              ), // subtle glow
+                        blurRadius: 12,
+                        spreadRadius: 2,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
                   child: Icon(
                     Icons.person,
                     size: profileImgSize * 0.5,
