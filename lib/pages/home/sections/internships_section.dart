@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/core/contents.dart';
 
+import '../../../core/responsive_utility.dart';
 import '../../../widgets/internship_card_widget.dart';
 
 class InternshipsSectionWidget extends StatelessWidget {
@@ -8,87 +9,45 @@ class InternshipsSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-
     return LayoutBuilder(
       builder: (context, constraints) {
-        final bool isMobile = constraints.maxWidth < 700;
-        final double headingSize = isMobile ? 22 : 36;
-        final double iconSize = isMobile ? 24 : 36;
-        final double verticalPadding = isMobile ? 24 : 56;
-        final double headerSpacing = isMobile ? 10 : 16;
-        final double cardsSpacing = isMobile ? 16 : 28;
+        final bool isMobile = ResponsiveStyles.isMobile(constraints.maxWidth);
 
-        Widget sectionHeader = isMobile
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.work,
-                    size: iconSize,
-                    color: theme.iconTheme.color,
-                  ),
-                  SizedBox(height: headerSpacing),
-                  Text(
-                    "Internships",
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                      color: theme.colorScheme.onSurface,
-                      letterSpacing: -1.5,
-                    ),
-                  ),
-                ],
-              )
-            : Row(
-                children: [
-                  Icon(
-                    Icons.work,
-                    size: iconSize,
-                    color: theme.iconTheme.color,
-                  ),
-                  SizedBox(width: headerSpacing),
-                  Text(
-                    "Internships",
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                      color: theme.colorScheme.onSurface,
-                      letterSpacing: -1.5,
-                    ),
-                  ),
-                ],
-              );
-
-        return Container(
-          color: theme.colorScheme.surface,
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(
-            vertical: verticalPadding,
-            horizontal: isMobile ? 12 : 0,
-          ),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1200),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  sectionHeader,
-                  SizedBox(height: isMobile ? 20 : 32),
-                  ListView.separated(
-                    itemCount: Contents.experiences.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    separatorBuilder: (c, i) => SizedBox(height: cardsSpacing),
-                    itemBuilder: (c, i) => InternshipCard(
-                      experience: Contents.experiences[i],
-                      isMobile: isMobile,
-                    ),
-                  ),
-                ],
+        // Using shared container wrapper with custom padding for internships section
+        return WidgetBuilders.sectionContainer(
+          context: context,
+          isMobile: isMobile,
+          verticalPadding: Dimensions.sectionPadding(isMobile),
+          horizontalPadding: isMobile ? 16.0 : 32,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Using shared section header widget with smaller headline style
+              WidgetBuilders.sectionHeader(
+                context: context,
+                isMobile: isMobile,
+                icon: Icons.work,
+                title: "Internships",
+                customStyle: TypographyStyles.smallHeadlineStyle(
+                  context,
+                  isMobile,
+                ),
               ),
-            ),
+
+              SizedBox(height: Dimensions.mediumSpacing(isMobile)),
+
+              ListView.separated(
+                itemCount: Contents.experiences.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (c, i) =>
+                    SizedBox(height: Dimensions.cardSpacing(isMobile)),
+                itemBuilder: (c, i) => InternshipCard(
+                  experience: Contents.experiences[i],
+                  isMobile: isMobile,
+                ),
+              ),
+            ],
           ),
         );
       },

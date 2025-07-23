@@ -88,10 +88,8 @@ class PortfolioHomePageState extends State<PortfolioHomePage> {
               expandedHeight: 72,
               floating: true,
               pinned: true,
-              // backgroundColor: colorScheme.surface,
               surfaceTintColor: Colors.transparent,
               elevation: 0,
-              // shadowColor: Colors.transparent,
               systemOverlayStyle: isDark
                   ? theme.appBarTheme.systemOverlayStyle?.copyWith(
                       statusBarBrightness: Brightness.dark,
@@ -121,19 +119,6 @@ class PortfolioHomePageState extends State<PortfolioHomePage> {
                   ),
                 ),
               ),
-              // leading: Container(
-              //   margin: EdgeInsets.all(8),
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(8),
-              //     color: colorScheme.primary.withValues(alpha: 0.1),
-              //   ),
-              //   child: Icon(
-              //     Icons.handshake_rounded,
-              //     color: colorScheme.primary,
-              //     size: 20,
-              //   ),
-              // ),
-              // titleSpacing: 0,
               title: Text(
                 "Portfolio",
                 style: theme.textTheme.titleMedium?.copyWith(
