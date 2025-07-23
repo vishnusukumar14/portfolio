@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// A widget that mimics the GitHub contributions grid UI.
 class ContributionGrid extends StatelessWidget {
   final int totalContributions;
-  final List<List<int>> gridData; // [week][day]
+  final List<List<int>> gridData;
   final List<Color> levelColors;
 
   const ContributionGrid({
@@ -39,7 +39,6 @@ class ContributionGrid extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Heading
             Text(
               "$totalContributions contributions in the last year",
               style: TextStyle(
@@ -48,6 +47,7 @@ class ContributionGrid extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
+
             const SizedBox(height: 22),
 
             // Grid rows
@@ -76,6 +76,7 @@ class ContributionGrid extends StatelessWidget {
                 ),
               ),
             ),
+
             const SizedBox(height: 18),
 
             // Legend
