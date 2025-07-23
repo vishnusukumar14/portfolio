@@ -18,7 +18,7 @@ class ProjectSectionWithNote extends StatelessWidget {
           context: context,
           isMobile: isMobile,
           quote: Contents.projectSectionDescription,
-          attribution: "- Vishnu S Nair",
+          attribution: "- Vishnu S",
         );
 
         // Projects header using custom icon size

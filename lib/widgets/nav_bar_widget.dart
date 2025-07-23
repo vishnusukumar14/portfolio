@@ -97,10 +97,10 @@ class NavBarWidget extends StatelessWidget {
         ),
         _buildNavItem(
           context,
-          'Experience',
+          'Internships',
           Icons.work_rounded,
           onExperiencePressed,
-          'Experience',
+          'Internships',
         ),
         _buildNavItem(
           context,
