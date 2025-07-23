@@ -4,6 +4,8 @@ import 'package:portfolio_app/core/contents.dart';
 import 'package:portfolio_app/core/util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/responsive_utility.dart';
+
 class EnhancedContactSectionWidget extends StatefulWidget {
   final void Function(String name, String email, String message)? onSend;
   final String? whatsappNumber;
@@ -358,15 +360,13 @@ class _EnhancedContactSectionWidgetState
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Header Section
-                          Text(
-                            "Get in Touch",
-                            style: textTheme.headlineLarge?.copyWith(
-                              fontSize: headingSize,
-                              fontWeight: FontWeight.bold,
-                              color: colorScheme.onSurface,
-                              letterSpacing: -1.5,
-                            ),
+                          WidgetBuilders.sectionHeader(
+                            context: context,
+                            isMobile: isMobile,
+                            icon: Icons.contact_page_sharp,
+                            title: "Get In Touch",
                           ),
+
                           SizedBox(height: isMobile ? 12 : 20),
 
                           RichText(
