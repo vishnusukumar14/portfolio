@@ -289,7 +289,7 @@ class _MobileNavSheet extends StatelessWidget {
     final items = [
       _NavItemData('Home', Icons.home_rounded, onHomePressed),
       _NavItemData('About', Icons.person_rounded, onAboutPressed),
-      _NavItemData('Experience', Icons.work_rounded, onExperiencePressed),
+      _NavItemData('Internships', Icons.work_rounded, onExperiencePressed),
       _NavItemData('Projects', Icons.folder_rounded, onProjectsPressed),
       // _NavItemData('Skills', Icons.code_rounded, onSkillsPressed),
       _NavItemData('Contact', Icons.mail_rounded, onContactPressed),
