@@ -30,12 +30,7 @@ To ensure efficient development workflows, I leverage CI/CD pipelines with GitHu
 Whether I’m refining UI/UX details, debugging tough runtime issues, or optimizing app performance, I take pride in writing clean, maintainable, and production-ready code. And yes—this entire website was built using Flutter too.""";
 
   static const projectSectionDescription =
-      "Hey! Here you'll find a collection of my personal experiments and projects — "
-      "ranging from Flutter apps to native Kotlin applications. "
-      "Many of these are integrated with Firebase, MongoDB, "
-      "Maps API, gRPC, and other modern tools. I enjoy "
-      "exploring new technologies and building apps with "
-      "clean architecture and smooth UX. For more, feel free to check out my GitHub.";
+      "Explore my personal projects — from Flutter apps to native Kotlin builds, often using Firebase, MongoDB, Maps API, and gRPC. I focus on clean architecture and smooth UX. Check out more on my GitHub.";
 
   static final experiences = [
     Experience(

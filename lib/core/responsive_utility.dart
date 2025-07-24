@@ -232,48 +232,48 @@ class WidgetBuilders {
   }
 
   /// Creates a quote widget with consistent styling
-  static Widget quoteWidget({
-    required BuildContext context,
-    required bool isMobile,
-    required String quote,
-    required String attribution,
-    IconData? quoteIcon,
-    Color? quoteIconColor,
-  }) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(
-          quoteIcon ?? Icons.format_quote_rounded,
-          size: isMobile ? 32.0 : 48.0,
-          color: quoteIconColor ?? theme.colorScheme.primary,
-        ),
-        SizedBox(height: isMobile ? 8.0 : 18.0),
-        Text(
-          quote,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withValues(
-              alpha: isDark ? 0.9 : 0.87,
-            ),
-            fontSize: isMobile ? 13.0 : 15.5,
-            height: 1.4,
-          ),
-        ),
-        SizedBox(height: isMobile ? 10.0 : 18.0),
-        Text(
-          attribution,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withValues(
-              alpha: isDark ? 0.7 : 0.6,
-            ),
-            fontSize: isMobile ? 12.0 : 14.5,
-            fontStyle: FontStyle.italic,
-          ),
-        ),
-      ],
-    );
-  }
+  // static Widget quoteWidget({
+  //   required BuildContext context,
+  //   required bool isMobile,
+  //   required String quote,
+  //   required String attribution,
+  //   IconData? quoteIcon,
+  //   Color? quoteIconColor,
+  // }) {
+  //   final theme = Theme.of(context);
+  //   final isDark = theme.brightness == Brightness.dark;
+  //
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Icon(
+  //         quoteIcon ?? Icons.format_quote_rounded,
+  //         size: isMobile ? 32.0 : 48.0,
+  //         color: quoteIconColor ?? theme.colorScheme.primary,
+  //       ),
+  //       SizedBox(height: isMobile ? 8.0 : 18.0),
+  //       Text(
+  //         quote,
+  //         style: theme.textTheme.bodyMedium?.copyWith(
+  //           color: theme.colorScheme.onSurface.withValues(
+  //             alpha: isDark ? 0.9 : 0.87,
+  //           ),
+  //           fontSize: isMobile ? 13.0 : 15.5,
+  //           height: 1.4,
+  //         ),
+  //       ),
+  //       SizedBox(height: isMobile ? 10.0 : 18.0),
+  //       Text(
+  //         attribution,
+  //         style: theme.textTheme.bodyMedium?.copyWith(
+  //           color: theme.colorScheme.onSurface.withValues(
+  //             alpha: isDark ? 0.7 : 0.6,
+  //           ),
+  //           fontSize: isMobile ? 12.0 : 14.5,
+  //           fontStyle: FontStyle.italic,
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 }

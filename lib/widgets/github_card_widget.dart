@@ -101,7 +101,7 @@ class GitHubCardWidget extends StatelessWidget {
                   const SizedBox(height: 18),
 
                   Text(
-                    'Flutter | Android Native | Dart | Kotlin | Python | gRpc | GO | MongoDB | Firebase Firestore | Tech Enthusiast',
+                    Contents.projectSectionDescription,
                     style: TextStyle(
                       fontSize: isResponsiveMobile ? 11 : 12,
                       color: isDark
