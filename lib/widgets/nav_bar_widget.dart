@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class NavBarWidget extends StatelessWidget {
@@ -5,7 +6,7 @@ class NavBarWidget extends StatelessWidget {
   final VoidCallback onAboutPressed;
   final VoidCallback onExperiencePressed;
   final VoidCallback onProjectsPressed;
-  final VoidCallback onSkillsPressed;
+  final VoidCallback onJourneyRoadMapPressed;
   final VoidCallback onContactPressed;
   final String? activeSection;
 
@@ -15,7 +16,7 @@ class NavBarWidget extends StatelessWidget {
     required this.onAboutPressed,
     required this.onExperiencePressed,
     required this.onProjectsPressed,
-    required this.onSkillsPressed,
+    required this.onJourneyRoadMapPressed,
     required this.onContactPressed,
     this.activeSection,
   });
@@ -76,6 +77,7 @@ class NavBarWidget extends StatelessWidget {
   }
 
   Widget _buildDesktopNav(BuildContext context, ColorScheme colorScheme) {
+    final theme = Theme.of(context);
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -123,6 +125,66 @@ class NavBarWidget extends StatelessWidget {
           onContactPressed,
           'Contact',
         ),
+        if (kDebugMode)
+          PopupMenuButton(
+            position: PopupMenuPosition.under,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                onTap: onJourneyRoadMapPressed,
+                child: Row(
+                  children: const [
+                    Icon(Icons.code_rounded, size: 18),
+                    SizedBox(width: 8),
+                    Text('My Journey'),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                onTap: () {}, // e.g., open blog/resume
+                child: Row(
+                  children: const [
+                    Icon(Icons.article_rounded, size: 18),
+                    SizedBox(width: 8),
+                    Text('Blog'),
+                  ],
+                ),
+              ),
+            ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.transparent,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.more_horiz,
+                      size: 18,
+                      color: colorScheme.primary,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'More',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 0.5,
+                        color: colorScheme.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -222,9 +284,9 @@ class NavBarWidget extends StatelessWidget {
             Navigator.pop(context);
             onProjectsPressed();
           },
-          onSkillsPressed: () {
+          onJourneyRoadMapPressed: () {
             Navigator.pop(context);
-            onSkillsPressed();
+            onJourneyRoadMapPressed();
           },
           onContactPressed: () {
             Navigator.pop(context);
@@ -242,7 +304,7 @@ class _MobileNavSheet extends StatelessWidget {
   final VoidCallback onAboutPressed;
   final VoidCallback onExperiencePressed;
   final VoidCallback onProjectsPressed;
-  final VoidCallback onSkillsPressed;
+  final VoidCallback onJourneyRoadMapPressed;
   final VoidCallback onContactPressed;
   final String? activeSection;
 
@@ -251,7 +313,7 @@ class _MobileNavSheet extends StatelessWidget {
     required this.onAboutPressed,
     required this.onExperiencePressed,
     required this.onProjectsPressed,
-    required this.onSkillsPressed,
+    required this.onJourneyRoadMapPressed,
     required this.onContactPressed,
     this.activeSection,
   });
@@ -293,6 +355,12 @@ class _MobileNavSheet extends StatelessWidget {
       _NavItemData('Projects', Icons.folder_rounded, onProjectsPressed),
       // _NavItemData('Skills', Icons.code_rounded, onSkillsPressed),
       _NavItemData('Contact', Icons.mail_rounded, onContactPressed),
+      if (kDebugMode)
+        _NavItemData('My Journey', Icons.code_rounded, onJourneyRoadMapPressed),
+      if (kDebugMode)
+        _NavItemData('Blog', Icons.article_rounded, () {
+          // Add your blog link or resume
+        }),
     ];
 
     return items.map((item) => _buildMobileNavItem(context, item)).toList();

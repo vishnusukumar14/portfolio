@@ -6,6 +6,7 @@ import 'package:web/web.dart' as web;
 
 import '../../core/analytics_service.dart';
 import '../../widgets/nav_bar_widget.dart';
+import '../roadmap/journey_roadmap_page.dart';
 import 'sections/about_section.dart';
 import 'sections/contact_section.dart';
 import 'sections/hero_section.dart';
@@ -138,8 +139,13 @@ class PortfolioHomePageState extends State<PortfolioHomePage> {
                         _scrollToSection(_experienceKey, 'Experience'),
                     onProjectsPressed: () =>
                         _scrollToSection(_projectsKey, 'Projects'),
-                    onSkillsPressed: () =>
-                        _scrollToSection(_skillsKey, 'Skills'),
+                    onJourneyRoadMapPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return JourneySectionWidget();
+                        },
+                      ),
+                    ),
                     onContactPressed: () =>
                         _scrollToSection(_contactKey, 'Contact'),
                   ),
