@@ -136,7 +136,7 @@ class NavBarWidget extends StatelessWidget {
                 onTap: onJourneyRoadMapPressed,
                 child: Row(
                   children: const [
-                    Icon(Icons.code_rounded, size: 18),
+                    Icon(Icons.join_full_rounded, size: 18),
                     SizedBox(width: 8),
                     Text('My Journey'),
                   ],
@@ -356,7 +356,11 @@ class _MobileNavSheet extends StatelessWidget {
       // _NavItemData('Skills', Icons.code_rounded, onSkillsPressed),
       _NavItemData('Contact', Icons.mail_rounded, onContactPressed),
       if (kDebugMode)
-        _NavItemData('My Journey', Icons.code_rounded, onJourneyRoadMapPressed),
+        _NavItemData(
+          'My Journey',
+          Icons.join_full_rounded,
+          onJourneyRoadMapPressed,
+        ),
       if (kDebugMode)
         _NavItemData('Blog', Icons.article_rounded, () {
           // Add your blog link or resume
