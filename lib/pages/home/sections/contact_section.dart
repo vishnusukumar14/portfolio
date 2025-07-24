@@ -462,7 +462,7 @@ class _EnhancedContactSectionWidgetState
                                 ? colorScheme.surfaceContainer
                                 : colorScheme.surfaceContainerLowest,
                             shadowColor: colorScheme.shadow.withValues(
-                              alpha: 0.1,
+                              alpha: 0.4,
                             ),
                             child: Padding(
                               padding: EdgeInsets.all(formPadding),
@@ -477,10 +477,10 @@ class _EnhancedContactSectionWidgetState
                                   children: [
                                     Text(
                                       'Send me a message',
-                                      style: textTheme.titleMedium?.copyWith(
+                                      style: textTheme.titleSmall?.copyWith(
                                         fontWeight: FontWeight.w600,
                                         color: colorScheme.onSurface,
-                                        fontSize: isMobile ? 16 : 18,
+                                        fontSize: isMobile ? 14 : 16,
                                       ),
                                     ),
                                     SizedBox(height: isMobile ? 20 : 24),
@@ -791,7 +791,7 @@ class _EnhancedContactSectionWidgetState
                   ),
           ),
           SizedBox(width: 8),
-          SelectableText(
+          Text(
             text,
             style: TextStyle(
               color: colorScheme.onSurface.withValues(alpha: 0.8),
