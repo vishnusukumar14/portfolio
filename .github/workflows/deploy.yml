@@ -1,5 +1,5 @@
 
-name: Deploy Flutter Web to GitHub Pages
+name: Portfolio Web Auto Deploy Workflow
 
 on:
   push:
