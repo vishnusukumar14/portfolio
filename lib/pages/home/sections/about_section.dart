@@ -65,7 +65,7 @@ class AboutSectionWidget extends StatelessWidget {
           children: [
             const EducationCardWidget(
               university: "JSS Science and Technology University",
-              degree: 'MCA, Computer Applications',
+              degree: 'Master of Computer Applications (MCA) ',
               institution: 'Sri Jayachamarajendra College of Engineering',
               location: "Mysuru, Karnataka",
               duration: '2023 – 2025',
