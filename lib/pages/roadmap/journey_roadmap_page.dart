@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 class JourneySectionWidget extends StatefulWidget {
   const JourneySectionWidget({super.key});
@@ -141,15 +142,48 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
           ),
         ),
         const SizedBox(height: 16),
-        Text(
-          'From Boy to Developer',
-          style: theme.textTheme.headlineLarge?.copyWith(
-            fontSize: isMobile ? 28 : 36,
-            fontWeight: FontWeight.bold,
-            color: primaryTextColor,
-            fontFamily: 'Bitcount Prop Single',
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: RichText(
+            textAlign: isMobile ? TextAlign.center : TextAlign.start,
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "From Boy to ",
+                  style: theme.textTheme.displaySmall?.copyWith(
+                    fontFamily: 'Bitcount Prop Single',
+                    fontSize: isMobile ? 28 : 36,
+                    fontWeight: FontWeight.bold,
+                    color: primaryTextColor,
+                    letterSpacing: isMobile ? -0.5 : -1,
+                    height: 1.1,
+                  ),
+                ),
+                TextSpan(
+                  text: "Dev",
+                  style: theme.textTheme.displayMedium?.copyWith(
+                    fontFamily: 'Bitcount Prop Single',
+                    fontSize: isMobile ? 28 : 36,
+                    fontWeight: FontWeight.bold,
+                    color: theme.primaryColor,
+                    letterSpacing: isMobile ? -0.5 : -1,
+                    height: 1.1,
+                  ),
+                ),
+                TextSpan(
+                  text: "eloper",
+                  style: theme.textTheme.displayMedium?.copyWith(
+                    fontFamily: 'Bitcount Prop Single',
+                    fontSize: isMobile ? 28 : 36,
+                    fontWeight: FontWeight.bold,
+                    color: primaryTextColor,
+                    letterSpacing: isMobile ? -0.5 : -1,
+                    height: 1.1,
+                  ),
+                ),
+              ],
+            ),
           ),
-          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 12),
         Text(
