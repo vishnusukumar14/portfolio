@@ -152,6 +152,15 @@ Whether I’m refining UI/UX details, debugging tough runtime issues, or optimiz
       languageColor: Colors.greenAccent,
     ),
     Project(
+      name: "Portfolio Web App",
+      description:
+          "A responsive portfolio built with Flutter, powered by Firebase. Features smooth animations, modern UI, project showcases, contact form, real-time visit tracking, and mobile-first design. CI/CD pipeline enabled for automated build and deploy.",
+      codeUrl: "https://github.com/vishnusukumar14/portfolio",
+      stars: 12,
+      language: "Dart, HTML",
+      languageColor: Colors.greenAccent,
+    ),
+    Project(
       name: "QuickGO",
       description:
           "QuickGO is a Kotlin/Java based Android application designed for hyperlocal delivery services, connecting nearby vendors and customers for fast and efficient last-mile delivery. "
