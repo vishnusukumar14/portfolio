@@ -335,7 +335,7 @@ class _EnhancedContactSectionWidgetState
         final labelFontSize = isMobile ? 13.0 : 15.0;
         final inputVerticalPad = isMobile ? 12.0 : 20.0;
         final buttonPaddingV = isMobile ? 16.0 : 20.0;
-        final buttonFontSize = isMobile ? 14.0 : 16.0;
+        final buttonFontSize = isMobile ? 13.0 : 15.0;
 
         return Column(
           children: [
@@ -893,6 +893,7 @@ class _EnhancedContactSectionWidgetState
         labelText: label,
         prefixIcon: Icon(
           prefixIcon,
+          size: 16,
           color: colorScheme.onSurface.withValues(alpha: 0.6),
         ),
         suffixIcon: suffixIcon,
