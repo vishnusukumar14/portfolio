@@ -16,7 +16,6 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
   late Animation<double> _threadAnimation;
   int _hoveredIndex = -1;
 
-  // Cache computed values to avoid recalculation
   late List<JourneyStep> _journeySteps;
 
   @override
