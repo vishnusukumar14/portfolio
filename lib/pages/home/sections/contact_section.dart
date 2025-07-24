@@ -134,8 +134,8 @@ class _EnhancedContactSectionWidgetState
     if (value == null || value.trim().isEmpty) {
       return 'Please enter a message';
     }
-    if (value.trim().length < 10) {
-      return 'Message must be at least 10 characters';
+    if (value.trim().length < 2) {
+      return 'Message must be at least 2 characters';
     }
     return null;
   }
@@ -493,6 +493,8 @@ class _EnhancedContactSectionWidgetState
                                       prefixIcon: Icons.person_outline,
                                       textInputAction: TextInputAction.next,
                                       isMobile: isMobile,
+                                      minLines: 1,
+                                      maxLines: 1,
                                       labelFontSize: labelFontSize,
                                       inputVerticalPad: inputVerticalPad,
                                       isValid: _nameValid,
@@ -509,6 +511,8 @@ class _EnhancedContactSectionWidgetState
                                       keyboardType: TextInputType.emailAddress,
                                       textInputAction: TextInputAction.next,
                                       isMobile: isMobile,
+                                      minLines: 1,
+                                      maxLines: 1,
                                       labelFontSize: labelFontSize,
                                       inputVerticalPad: inputVerticalPad,
                                       isValid: _emailValid,
@@ -522,7 +526,8 @@ class _EnhancedContactSectionWidgetState
                                       label: "Your Message",
                                       validator: _validateMessage,
                                       prefixIcon: Icons.message_outlined,
-                                      maxLines: 2,
+                                      minLines: 2,
+                                      maxLines: 6,
                                       textInputAction: TextInputAction.done,
                                       isMobile: isMobile,
                                       labelFontSize: labelFontSize,
@@ -853,7 +858,8 @@ class _EnhancedContactSectionWidgetState
     required IconData prefixIcon,
     TextInputType? keyboardType,
     TextInputAction? textInputAction,
-    int? maxLines = 1,
+    int? maxLines,
+    int? minLines = 2,
     required bool isMobile,
     required double labelFontSize,
     required double inputVerticalPad,
@@ -880,6 +886,7 @@ class _EnhancedContactSectionWidgetState
         color: colorScheme.onSurface,
       ),
       maxLines: maxLines,
+      minLines: minLines,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       decoration: InputDecoration(
