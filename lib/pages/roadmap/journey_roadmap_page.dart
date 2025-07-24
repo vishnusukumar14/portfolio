@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class JourneySectionWidget extends StatefulWidget {
   const JourneySectionWidget({super.key});
@@ -24,7 +25,7 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
 
     // Enhanced animation controller for thread effect
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 2000),
       vsync: this,
     );
 
@@ -177,41 +178,21 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
 
     return Stack(
       children: [
-        // Background thread
+        // Zigzag background thread for mobile
         Positioned(
-          left: 19,
+          left: 0,
+          right: 0,
           top: 10,
           bottom: 0,
           child: AnimatedBuilder(
             animation: _threadAnimation,
             builder: (context, child) {
-              return Container(
-                width: 2,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [
-                      0.0,
-                      _threadAnimation.value,
-                      _threadAnimation.value,
-                      1.0,
-                    ],
-                    colors: [
-                      const Color(0xFF6C63FF).withValues(alpha: 0.8),
-                      const Color(0xFFE91E63).withValues(alpha: 0.8),
-                      Colors.transparent,
-                      Colors.transparent,
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(1),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF6C63FF).withValues(alpha: 0.3),
-                      blurRadius: 4,
-                      spreadRadius: 1,
-                    ),
-                  ],
+              return CustomPaint(
+                painter: ZigzagThreadPainter(
+                  progress: _threadAnimation.value,
+                  steps: steps,
+                  isMobile: true,
+                  isDark: isDark,
                 ),
               );
             },
@@ -238,76 +219,91 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
     final isDark = theme.brightness == Brightness.dark;
     final isLast = index == totalSteps - 1;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Timeline dot with enhanced styling
-        SizedBox(
-          width: 40,
-          child: Column(
-            children: [
-              Container(
-                width: 24,
-                height: 24,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [step.color, step.color.withValues(alpha: 0.7)],
+    // Calculate zigzag position for mobile
+    final double zigzagOffset = _calculateMobileZigzagOffset(index, totalSteps);
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 40),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Timeline dot with dynamic positioning
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            margin: EdgeInsets.only(left: zigzagOffset),
+            width: 40,
+            child: Column(
+              children: [
+                Container(
+                  width: 28,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [step.color, step.color.withValues(alpha: 0.7)],
+                    ),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 3),
+                    boxShadow: [
+                      BoxShadow(
+                        color: step.color.withValues(alpha: 0.4),
+                        blurRadius: 12,
+                        spreadRadius: 3,
+                      ),
+                      BoxShadow(
+                        color: Colors.white.withValues(
+                          alpha: isDark ? 0.1 : 0.8,
+                        ),
+                        blurRadius: 6,
+                        spreadRadius: 2,
+                      ),
+                    ],
                   ),
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 3),
-                  boxShadow: [
-                    BoxShadow(
-                      color: step.color.withValues(alpha: 0.4),
-                      blurRadius: 8,
-                      spreadRadius: 2,
-                    ),
-                    BoxShadow(
-                      color: Colors.white.withValues(alpha: isDark ? 0.1 : 0.8),
-                      blurRadius: 4,
-                      spreadRadius: 1,
-                    ),
-                  ],
-                ),
-                child: Icon(step.icon, size: 12, color: Colors.white),
-              ),
-              if (!isLast) const SizedBox(height: 80),
-            ],
-          ),
-        ),
-        const SizedBox(width: 16),
-        // Content with thread-connected styling
-        Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 40),
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: isDark ? theme.colorScheme.surfaceContainer : Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: step.color.withValues(alpha: 0.3),
-                width: 1.5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: step.color.withValues(alpha: 0.1),
-                  blurRadius: 12,
-                  offset: const Offset(0, 4),
-                  spreadRadius: 2,
-                ),
-                BoxShadow(
-                  color: isDark
-                      ? Colors.black26
-                      : Colors.grey.withValues(alpha: 0.08),
-                  blurRadius: 6,
-                  offset: const Offset(0, 2),
+                  child: Icon(step.icon, size: 14, color: Colors.white),
                 ),
               ],
             ),
-            child: _buildStepContent(theme, step, true),
           ),
-        ),
-      ],
+          const SizedBox(width: 16),
+          // Content with enhanced styling
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: isDark
+                    ? theme.colorScheme.surfaceContainer
+                    : Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: step.color.withValues(alpha: 0.3),
+                  width: 1.5,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: step.color.withValues(alpha: 0.15),
+                    blurRadius: 15,
+                    offset: const Offset(0, 5),
+                    spreadRadius: 3,
+                  ),
+                  BoxShadow(
+                    color: isDark
+                        ? Colors.black26
+                        : Colors.grey.withValues(alpha: 0.08),
+                    blurRadius: 8,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: _buildStepContent(theme, step, true),
+            ),
+          ),
+        ],
+      ),
     );
+  }
+
+  double _calculateMobileZigzagOffset(int index, int totalSteps) {
+    // Create a zigzag pattern - alternate left and right
+    return index % 2 == 0 ? 0.0 : 40.0;
   }
 
   Widget _buildDesktopTimeline(
@@ -319,47 +315,20 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
 
     return Stack(
       children: [
-        // Central thread line
-        Positioned(
-          left: 0,
-          right: 0,
-          top: 12,
-          bottom: 0,
-          child: Center(
-            child: AnimatedBuilder(
-              animation: _threadAnimation,
-              builder: (context, child) {
-                return Container(
-                  width: 3,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [
-                        0.0,
-                        _threadAnimation.value,
-                        _threadAnimation.value,
-                        1.0,
-                      ],
-                      colors: [
-                        const Color(0xFF6C63FF).withValues(alpha: 0.8),
-                        const Color(0xFFE91E63).withValues(alpha: 0.8),
-                        Colors.transparent,
-                        Colors.transparent,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(1.5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFF6C63FF).withValues(alpha: 0.3),
-                        blurRadius: 6,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+        // Zigzag central thread line for desktop
+        Positioned.fill(
+          child: AnimatedBuilder(
+            animation: _threadAnimation,
+            builder: (context, child) {
+              return CustomPaint(
+                painter: ZigzagThreadPainter(
+                  progress: _threadAnimation.value,
+                  steps: steps,
+                  isMobile: false,
+                  isDark: isDark,
+                ),
+              );
+            },
           ),
         ),
         // Journey steps
@@ -398,7 +367,7 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
       onEnter: (_) => setState(() => _hoveredIndex = index),
       onExit: (_) => setState(() => _hoveredIndex = -1),
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20),
+        margin: const EdgeInsets.symmetric(vertical: 30),
         child: Row(
           children: [
             // Left content
@@ -414,84 +383,46 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
                     )
                   : const SizedBox(),
             ),
-            // Center timeline with enhanced thread connection
+            // Center timeline with enhanced dot
             SizedBox(
-              width: 80,
-              child: Column(
-                children: [
-                  // Thread connector to dot
-                  if (index > 0)
-                    Container(
-                      width: 2,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            _journeySteps[index - 1].color.withValues(
-                              alpha: 0.6,
-                            ),
-                            step.color.withValues(alpha: 0.6),
-                          ],
-                        ),
-                      ),
+              width: 100,
+              child: Center(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  width: isHovered ? 36 : 32,
+                  height: isHovered ? 36 : 32,
+                  decoration: BoxDecoration(
+                    gradient: RadialGradient(
+                      colors: [step.color, step.color.withValues(alpha: 0.8)],
                     ),
-                  // Enhanced dot with glow effect
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    width: isHovered ? 32 : 28,
-                    height: isHovered ? 32 : 28,
-                    decoration: BoxDecoration(
-                      gradient: RadialGradient(
-                        colors: [step.color, step.color.withValues(alpha: 0.8)],
-                      ),
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: isHovered ? 4 : 3,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: step.color.withValues(
-                            alpha: isHovered ? 0.5 : 0.3,
-                          ),
-                          blurRadius: isHovered ? 16 : 8,
-                          spreadRadius: isHovered ? 4 : 2,
-                        ),
-                        BoxShadow(
-                          color: Colors.white.withValues(
-                            alpha: isDark ? 0.2 : 0.9,
-                          ),
-                          blurRadius: 4,
-                          spreadRadius: 1,
-                        ),
-                      ],
-                    ),
-                    child: Icon(
-                      step.icon,
-                      size: isHovered ? 18 : 16,
+                    shape: BoxShape.circle,
+                    border: Border.all(
                       color: Colors.white,
+                      width: isHovered ? 5 : 4,
                     ),
-                  ),
-                  // Thread connector from dot
-                  if (!isLast)
-                    Container(
-                      width: 2,
-                      height: 80,
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            step.color.withValues(alpha: 0.6),
-                            index < _journeySteps.length - 1
-                                ? _journeySteps[index + 1].color.withValues(
-                                    alpha: 0.6,
-                                  )
-                                : step.color.withValues(alpha: 0.3),
-                          ],
+                    boxShadow: [
+                      BoxShadow(
+                        color: step.color.withValues(
+                          alpha: isHovered ? 0.6 : 0.4,
                         ),
+                        blurRadius: isHovered ? 20 : 12,
+                        spreadRadius: isHovered ? 5 : 3,
                       ),
-                    ),
-                ],
+                      BoxShadow(
+                        color: Colors.white.withValues(
+                          alpha: isDark ? 0.2 : 0.9,
+                        ),
+                        blurRadius: 6,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    step.icon,
+                    size: isHovered ? 20 : 18,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
             // Right content
@@ -524,36 +455,36 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
     final isDark = theme.brightness == Brightness.dark;
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      margin: EdgeInsets.only(left: isLeft ? 0 : 20, right: isLeft ? 20 : 0),
+      duration: const Duration(milliseconds: 300),
+      margin: EdgeInsets.only(left: isLeft ? 0 : 30, right: isLeft ? 30 : 0),
       padding: const EdgeInsets.all(24),
       transform: Matrix4.identity()
-        ..translate(0.0, isHovered ? -4.0 : 0.0)
-        ..scale(isHovered ? 1.02 : 1.0),
+        ..translate(0.0, isHovered ? -6.0 : 0.0)
+        ..scale(isHovered ? 1.03 : 1.0),
       decoration: BoxDecoration(
         color: isDark ? theme.colorScheme.surfaceContainer : Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(24),
         border: Border.all(
           color: isHovered
-              ? step.color.withValues(alpha: 0.5)
+              ? step.color.withValues(alpha: 0.6)
               : step.color.withValues(alpha: 0.3),
-          width: isHovered ? 2 : 1.5,
+          width: isHovered ? 2.5 : 1.5,
         ),
         boxShadow: [
           BoxShadow(
             color: isHovered
-                ? step.color.withValues(alpha: 0.2)
-                : step.color.withValues(alpha: 0.1),
-            blurRadius: isHovered ? 20 : 12,
-            offset: Offset(0, isHovered ? 8 : 4),
-            spreadRadius: isHovered ? 4 : 2,
+                ? step.color.withValues(alpha: 0.25)
+                : step.color.withValues(alpha: 0.15),
+            blurRadius: isHovered ? 25 : 15,
+            offset: Offset(0, isHovered ? 10 : 5),
+            spreadRadius: isHovered ? 5 : 3,
           ),
           BoxShadow(
             color: isDark
                 ? Colors.black26
                 : Colors.grey.withValues(alpha: 0.08),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -576,13 +507,13 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    step.color.withValues(alpha: 0.1),
-                    step.color.withValues(alpha: 0.05),
+                    step.color.withValues(alpha: 0.15),
+                    step.color.withValues(alpha: 0.08),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: step.color.withValues(alpha: 0.3),
+                  color: step.color.withValues(alpha: 0.4),
                   width: 1,
                 ),
               ),
@@ -591,27 +522,31 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
                 style: TextStyle(
                   color: step.color,
                   fontSize: 12,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
             const Spacer(),
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 gradient: RadialGradient(
                   colors: [
-                    step.color.withValues(alpha: 0.1),
+                    step.color.withValues(alpha: 0.15),
                     step.color.withValues(alpha: 0.05),
                   ],
                 ),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: step.color.withValues(alpha: 0.2),
+                  width: 1,
+                ),
               ),
-              child: Icon(step.icon, color: step.color, size: 20),
+              child: Icon(step.icon, color: step.color, size: 22),
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
         Text(
           step.title,
           style: theme.textTheme.headlineSmall?.copyWith(
@@ -620,48 +555,48 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
             color: primaryTextColor,
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 10),
         Text(
           step.description,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: secondaryTextColor,
-            height: 1.5,
+            height: 1.6,
             fontSize: isMobile ? 14 : 15,
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 18),
         // Enhanced technology tags
         Wrap(
           spacing: 8,
           runSpacing: 8,
           children: step.technologies.map((tech) {
             return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: isDark
                       ? [
-                          Colors.white.withValues(alpha: 0.1),
-                          Colors.white.withValues(alpha: 0.05),
+                          Colors.white.withValues(alpha: 0.12),
+                          Colors.white.withValues(alpha: 0.06),
                         ]
                       : [
-                          Colors.grey.withValues(alpha: 0.1),
-                          Colors.grey.withValues(alpha: 0.05),
+                          Colors.grey.withValues(alpha: 0.12),
+                          Colors.grey.withValues(alpha: 0.06),
                         ],
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: isDark
-                      ? Colors.white.withValues(alpha: 0.2)
-                      : Colors.grey.withValues(alpha: 0.3),
+                      ? Colors.white.withValues(alpha: 0.25)
+                      : Colors.grey.withValues(alpha: 0.35),
                 ),
               ),
               child: Text(
                 tech,
                 style: TextStyle(
                   fontSize: 12,
-                  color: primaryTextColor.withValues(alpha: 0.8),
-                  fontWeight: FontWeight.w500,
+                  color: primaryTextColor.withValues(alpha: 0.85),
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             );
@@ -801,6 +736,176 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
         color: const Color(0xFFE91E63),
       ),
     ];
+  }
+}
+
+// Custom painter for zigzag thread connections
+class ZigzagThreadPainter extends CustomPainter {
+  final double progress;
+  final List<JourneyStep> steps;
+  final bool isMobile;
+  final bool isDark;
+
+  ZigzagThreadPainter({
+    required this.progress,
+    required this.steps,
+    required this.isMobile,
+    required this.isDark,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (isMobile) {
+      _paintMobileZigzagThread(canvas, size);
+    } else {
+      _paintDesktopZigzagThread(canvas, size);
+    }
+  }
+
+  void _paintMobileZigzagThread(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 3.0
+      ..strokeCap = StrokeCap.round;
+
+    final stepHeight = size.height / (steps.length - 1);
+
+    for (int i = 0; i < steps.length - 1; i++) {
+      final currentY = i * stepHeight + 20;
+      final nextY = (i + 1) * stepHeight + 20;
+
+      // Calculate zigzag positions
+      final currentX = i % 2 == 0 ? 20.0 : 60.0;
+      final nextX = (i + 1) % 2 == 0 ? 20.0 : 60.0;
+
+      // Create straight line path
+      final path = Path();
+      path.moveTo(currentX, currentY);
+      path.lineTo(nextX, nextY);
+
+      // Apply gradient effect
+      final gradient = LinearGradient(
+        colors: [
+          steps[i].color.withValues(alpha: 0.8),
+          steps[i + 1].color.withValues(alpha: 0.8),
+        ],
+      );
+
+      final rect = Rect.fromLTWH(
+        math.min(currentX, nextX) - 10,
+        currentY,
+        (currentX - nextX).abs() + 20,
+        nextY - currentY,
+      );
+
+      paint.shader = gradient.createShader(rect);
+
+      // Draw the current segment if within progress
+      final segmentProgress = (progress * (steps.length - 1)) - i;
+      if (segmentProgress > 0) {
+        final clampedProgress = segmentProgress.clamp(0.0, 1.0);
+
+        // Draw partial line based on progress
+        final partialPath = Path();
+        partialPath.moveTo(currentX, currentY);
+
+        final partialX = currentX + (nextX - currentX) * clampedProgress;
+        final partialY = currentY + (nextY - currentY) * clampedProgress;
+        partialPath.lineTo(partialX, partialY);
+
+        canvas.drawPath(partialPath, paint);
+      }
+    }
+  }
+
+  void _paintDesktopZigzagThread(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 4.0
+      ..strokeCap = StrokeCap.round;
+
+    final centerX = size.width / 2;
+    final stepHeight = size.height / (steps.length - 1);
+
+    for (int i = 0; i < steps.length - 1; i++) {
+      final currentY = i * stepHeight + 40;
+      final nextY = (i + 1) * stepHeight + 40;
+
+      // Create zigzag pattern - alternating sides
+      final currentIsLeft = i % 2 == 0;
+      final nextIsLeft = (i + 1) % 2 == 0;
+
+      final currentX = currentIsLeft ? centerX - 200 : centerX + 200;
+      final nextX = nextIsLeft ? centerX - 200 : centerX + 200;
+
+      // Create straight line path with intermediate point at center
+      final path = Path();
+      path.moveTo(currentX, currentY);
+
+      // Add intermediate point for zigzag effect
+      final midY = currentY + (nextY - currentY) * 0.5;
+      path.lineTo(centerX, midY);
+      path.lineTo(nextX, nextY);
+
+      // Apply gradient based on step colors
+      final gradient = LinearGradient(
+        colors: [steps[i].color, steps[i + 1].color],
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+      );
+
+      final rect = Rect.fromLTWH(
+        centerX - 250,
+        currentY,
+        500,
+        nextY - currentY,
+      );
+
+      paint.shader = gradient.createShader(rect);
+
+      // Draw segment based on progress
+      final segmentProgress = (progress * (steps.length - 1)) - i;
+      if (segmentProgress > 0) {
+        final clampedProgress = segmentProgress.clamp(0.0, 1.0);
+
+        final partialPath = Path();
+        partialPath.moveTo(currentX, currentY);
+
+        if (clampedProgress <= 0.5) {
+          // Draw first half - from current to center
+          final partialX =
+              currentX + (centerX - currentX) * (clampedProgress * 2);
+          final partialY = currentY + (midY - currentY) * (clampedProgress * 2);
+          partialPath.lineTo(partialX, partialY);
+        } else {
+          // Draw full first half, then partial second half
+          partialPath.lineTo(centerX, midY);
+          final secondHalfProgress = (clampedProgress - 0.5) * 2;
+          final partialX = centerX + (nextX - centerX) * secondHalfProgress;
+          final partialY = midY + (nextY - midY) * secondHalfProgress;
+          partialPath.lineTo(partialX, partialY);
+        }
+
+        canvas.drawPath(partialPath, paint);
+
+        // Add glow effect
+        final glowPaint = Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 8.0
+          ..strokeCap = StrokeCap.round
+          ..shader = gradient.createShader(rect)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4.0);
+
+        canvas.drawPath(partialPath, glowPaint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(ZigzagThreadPainter oldDelegate) {
+    return oldDelegate.progress != progress ||
+        oldDelegate.isMobile != isMobile ||
+        oldDelegate.isDark != isDark;
   }
 }
 

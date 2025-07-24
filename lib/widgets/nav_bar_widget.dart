@@ -125,23 +125,21 @@ class NavBarWidget extends StatelessWidget {
           onContactPressed,
           'Contact',
         ),
-        if (kDebugMode)
-          PopupMenuButton(
-            position: PopupMenuPosition.under,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                onTap: onJourneyRoadMapPressed,
-                child: Row(
-                  children: const [
-                    Icon(Icons.join_full_rounded, size: 18),
-                    SizedBox(width: 8),
-                    Text('My Journey'),
-                  ],
-                ),
+        PopupMenuButton(
+          position: PopupMenuPosition.under,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              onTap: onJourneyRoadMapPressed,
+              child: Row(
+                children: const [
+                  Icon(Icons.join_full_rounded, size: 18),
+                  SizedBox(width: 8),
+                  Text('My Journey'),
+                ],
               ),
+            ),
+            if (kDebugMode)
               PopupMenuItem(
                 onTap: () {}, // e.g., open blog/resume
                 child: Row(
@@ -152,39 +150,32 @@ class NavBarWidget extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.transparent,
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.more_horiz,
-                      size: 18,
+          ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.transparent,
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.more_horiz, size: 18, color: colorScheme.primary),
+                  const SizedBox(width: 8),
+                  Text(
+                    'More',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.5,
                       color: colorScheme.primary,
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'More',
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 0.5,
-                        color: colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
+        ),
       ],
     );
   }
@@ -355,12 +346,11 @@ class _MobileNavSheet extends StatelessWidget {
       _NavItemData('Projects', Icons.folder_rounded, onProjectsPressed),
       // _NavItemData('Skills', Icons.code_rounded, onSkillsPressed),
       _NavItemData('Contact', Icons.mail_rounded, onContactPressed),
-      if (kDebugMode)
-        _NavItemData(
-          'My Journey',
-          Icons.join_full_rounded,
-          onJourneyRoadMapPressed,
-        ),
+      _NavItemData(
+        'My Journey',
+        Icons.join_full_rounded,
+        onJourneyRoadMapPressed,
+      ),
       if (kDebugMode)
         _NavItemData('Blog', Icons.article_rounded, () {
           // Add your blog link or resume
