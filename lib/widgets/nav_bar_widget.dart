@@ -61,11 +61,11 @@ class NavBarWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               onTap: () => _showMobileNavSheet(context),
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(8),
                 child: Icon(
                   Icons.menu_rounded,
                   color: colorScheme.onSurface,
-                  size: 24,
+                  size: 18,
                 ),
               ),
             ),
@@ -268,7 +268,7 @@ class _MobileNavSheet extends StatelessWidget {
           // Handle bar
           Container(
             margin: const EdgeInsets.only(top: 12, bottom: 24),
-            width: 40,
+            width: 32,
             height: 4,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(2),
@@ -304,7 +304,7 @@ class _MobileNavSheet extends StatelessWidget {
     final isActive = activeSection == item.title;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         gradient: isActive
@@ -330,7 +330,7 @@ class _MobileNavSheet extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           onTap: item.onPressed,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Row(
               children: [
                 Container(
@@ -345,7 +345,7 @@ class _MobileNavSheet extends StatelessWidget {
                   ),
                   child: Icon(
                     item.icon,
-                    size: 20,
+                    size: 18,
                     color: isActive
                         ? colorScheme.primary
                         : colorScheme.onSurfaceVariant,
@@ -355,7 +355,7 @@ class _MobileNavSheet extends StatelessWidget {
                 Expanded(
                   child: Text(
                     item.title,
-                    style: theme.textTheme.bodyLarge?.copyWith(
+                    style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
                       color: isActive
                           ? colorScheme.primary
