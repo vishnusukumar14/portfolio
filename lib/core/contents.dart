@@ -9,7 +9,7 @@ class Contents {
   static const myPhoneNumber = "REMOVED_PHONE";
   static const myEmailId = "REMOVED_EMAIL";
 
-  static const myProfilePhotoAssetPath = "assets/1746809048028.jpeg";
+  static const myProfilePhotoAssetPath = "assets/images/1746809048028.jpeg";
   static const linkedInLogoMarkAssetPath = "assets/logos/li_bug_mark.png";
   static const linkedInLogoAssetPath = "assets/logos/li_logo.png";
   static const githubMarkAssetPath = "assets/logos/github_mark.png";
