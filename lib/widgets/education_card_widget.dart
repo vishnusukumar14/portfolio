@@ -54,7 +54,7 @@ class EducationCardWidget extends StatelessWidget {
             degree,
             style: textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 18,
+              fontSize: 14,
               color: colorScheme.onSurface,
             ),
           ),
