@@ -22,6 +22,7 @@ class GitHubCardWidget extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
+        padding: EdgeInsets.all(contentPadding),
         decoration: BoxDecoration(
           color: isDark ? const Color(0xFF0D1117) : theme.cardColor,
           borderRadius: BorderRadius.circular(isResponsiveMobile ? 8 : 12),
@@ -31,103 +32,71 @@ class GitHubCardWidget extends StatelessWidget {
           ),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Focusing
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 6),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.golf_course_rounded,
-                    // color: theme.primaryColor,
-                    size: 12,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: isResponsiveMobile ? 20.0 : 28.0,
+                  backgroundImage: const AssetImage(
+                    'assets/images/spiderman.jpg',
                   ),
-                  const SizedBox(width: 6),
-                  const Text("Focusing", style: TextStyle(fontSize: 11)),
-                ],
-              ),
-            ),
-
-            Divider(
-              color: theme.primaryColor.withValues(alpha: 0.4),
-              thickness: 0.5,
-              height: 1,
-            ),
-
-            Padding(
-              padding: EdgeInsets.all(contentPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CircleAvatar(
-                        radius: isResponsiveMobile ? 20.0 : 28.0,
-                        backgroundImage: const AssetImage(
-                          'assets/images/spiderman.jpg',
+                      Text(
+                        'vishnusukumar14',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: isResponsiveMobile ? 16 : 18,
+                          color: isDark ? Colors.white : Colors.black,
                         ),
                       ),
-                      const SizedBox(width: 14),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'vishnusukumar14',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: isResponsiveMobile ? 16 : 18,
-                                color: isDark ? Colors.white : Colors.black,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'vishnu s · he/him',
-                              style: TextStyle(
-                                fontSize: isResponsiveMobile ? 12 : 14,
-                                color: isDark
-                                    ? const Color(0xFF8B949E)
-                                    : Colors.grey.shade600,
-                              ),
-                            ),
-                          ],
+                      const SizedBox(height: 4),
+                      Text(
+                        'vishnu s · he/him',
+                        style: TextStyle(
+                          fontSize: isResponsiveMobile ? 12 : 14,
+                          color: isDark
+                              ? const Color(0xFF8B949E)
+                              : Colors.grey.shade600,
                         ),
                       ),
                     ],
                   ),
+                ),
+              ],
+            ),
 
-                  const SizedBox(height: 18),
+            const SizedBox(height: 18),
 
-                  Text(
-                    Contents.projectSectionDescription,
-                    style: TextStyle(
-                      fontSize: isResponsiveMobile ? 11 : 12,
-                      color: isDark
-                          ? const Color(0xFF8B949E)
-                          : Colors.grey.shade700,
-                      height: 1.5,
-                    ),
-                  ),
-
-                  const SizedBox(height: 18),
-
-                  _infoRow(
-                    icon: Icons.location_on_outlined,
-                    text: 'India',
-                    isDark: isDark,
-                    isResponsiveMobile: isResponsiveMobile,
-                  ),
-                  const SizedBox(height: 8),
-                  _infoRow(
-                    icon: Icons.people,
-                    text: '1 Followers • 0 Following',
-                    isDark: isDark,
-                    isResponsiveMobile: isResponsiveMobile,
-                  ),
-                ],
+            Text(
+              Contents.projectSectionDescription,
+              style: TextStyle(
+                fontSize: isResponsiveMobile ? 11 : 12,
+                color: isDark ? const Color(0xFF8B949E) : Colors.grey.shade700,
+                height: 1.5,
               ),
+            ),
+
+            const SizedBox(height: 18),
+
+            _infoRow(
+              icon: Icons.location_on_outlined,
+              text: 'India',
+              isDark: isDark,
+              isResponsiveMobile: isResponsiveMobile,
+            ),
+            const SizedBox(height: 8),
+            _infoRow(
+              icon: Icons.people,
+              text: '1 Followers • 0 Following',
+              isDark: isDark,
+              isResponsiveMobile: isResponsiveMobile,
             ),
           ],
         ),
