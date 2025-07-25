@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/core/constants.dart';
 
 import 'models/experience.dart';
 import 'models/project.dart';
@@ -6,8 +7,8 @@ import 'models/project.dart';
 class Contents {
   static const myLinkedInUrl = "https://www.linkedin.com/in/vishnus14/";
   static const myGithubUrl = "https://github.com/vishnusukumar14";
-  static const myPhoneNumber = "REMOVED_PHONE";
-  static const myEmailId = "REMOVED_EMAIL";
+  static const myPhoneNumber = Constants.myPhoneNumber;
+  static const myEmailId = Constants.myEmailId;
 
   static const myProfilePhotoAssetPath = "assets/images/1746809048028.jpeg";
   static const linkedInLogoMarkAssetPath = "assets/logos/li_bug_mark.png";

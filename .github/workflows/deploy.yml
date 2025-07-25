@@ -1,4 +1,3 @@
-
 name: Portfolio Web Auto Deploy Workflow
 
 on:
@@ -45,6 +44,7 @@ jobs:
         run: |
           mkdir -p lib
           echo "${{ secrets.FIREBASE_OPTIONS_DART }}" | base64 -d > lib/firebase_options.dart
+          echo "${{ secrets.CONSTANTS_ENCODED_DART }}" | base64 -d > lib/core/constants.dart
 
       - name: Install dependencies
         run: flutter pub get
