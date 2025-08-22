@@ -40,7 +40,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-flutter-
 
-      - name: Restore firebase_options.dart
+      - name: Restore firebase_options.dart | constants.dart
         run: |
           mkdir -p lib
           echo "${{ secrets.FIREBASE_OPTIONS_DART }}" | base64 -d > lib/firebase_options.dart

@@ -94,7 +94,7 @@ class GitHubCardWidget extends StatelessWidget {
             const SizedBox(height: 8),
             _infoRow(
               icon: Icons.people,
-              text: '1 Followers • 0 Following',
+              text: '2 Followers • 0 Following',
               isDark: isDark,
               isResponsiveMobile: isResponsiveMobile,
             ),

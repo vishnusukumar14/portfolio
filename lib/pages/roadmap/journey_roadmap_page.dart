@@ -148,7 +148,30 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "From Boy to ",
+                  text: "From ",
+                  style: theme.textTheme.displaySmall?.copyWith(
+                    fontFamily: 'Bitcount Prop Single',
+                    fontSize: isMobile ? 28 : 36,
+                    fontWeight: FontWeight.bold,
+                    color: primaryTextColor,
+                    letterSpacing: isMobile ? -0.5 : -1,
+                    height: 1.1,
+                  ),
+                ),
+
+                TextSpan(
+                  text: "Dev ",
+                  style: theme.textTheme.displayMedium?.copyWith(
+                    fontFamily: 'Bitcount Prop Single',
+                    fontSize: isMobile ? 28 : 36,
+                    fontWeight: FontWeight.bold,
+                    color: theme.primaryColor,
+                    letterSpacing: isMobile ? -0.5 : -1,
+                    height: 1.1,
+                  ),
+                ),
+                TextSpan(
+                  text: "to ",
                   style: theme.textTheme.displaySmall?.copyWith(
                     fontFamily: 'Bitcount Prop Single',
                     fontSize: isMobile ? 28 : 36,
@@ -676,14 +699,13 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
         period: '2023-2025',
         title: 'MCA & Advanced Learning',
         description:
-            'Pursuing Master\'s in Computer Applications at SJCE, Mysuru (GPA: 8.72/10). Mastered mobile development with Flutter/Dart and Android development with Kotlin. Learned backend development with Django and Go.',
+            'Pursuing Master\'s in Computer Applications at SJCE, Mysuru (GPA: 8.72/10). Mastered mobile development with Flutter/Dart and Android development with Kotlin. Learned backend development with Django.',
         technologies: [
           'Flutter',
           'Dart',
           'Kotlin',
           'Python',
           'Django',
-          'Go',
           'Firebase',
           'MongoDB',
         ],
@@ -710,9 +732,8 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
         period: 'Personal Projects',
         title: 'Innovation & Problem Solving',
         description:
-            'Built Connexy (privacy-first chat app with Go backend) and QuickGO (voice-activated e-grocery platform). Implemented advanced features like QR code scanning, real-time messaging, and KNN-based partner allocation.',
+            'Built Connexy (privacy-first chat app with Django backend) and QuickGO (voice-activated e-grocery platform). Implemented advanced features like QR code scanning, real-time messaging, and KNN-based partner allocation.',
         technologies: [
-          'Go',
           'Flutter',
           'Firestore',
           'Firebase Auth',
@@ -727,12 +748,11 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
         period: 'Feb 2025 - June 2025',
         title: 'Professional Experience',
         description:
-            'Software Developer Intern at Swagino\'s. Building cross-platform apps with Flutter, developing backend services in Go and Django, and implementing gRPC-based real-time communication systems.',
+            'Software Developer Intern at Swagino\'s. Building cross-platform apps with Flutter, developing backend services Django, and implementing gRPC-based real-time communication systems.',
         technologies: [
           'Flutter',
           'Kotlin',
           'Jetpack Compose',
-          'Go',
           'Django',
           'gRPC',
           'CI/CD',
