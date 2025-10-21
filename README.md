@@ -1,11 +1,6 @@
 <h1 align="center">Vishnu S — Portfolio</h1>
 
 
-
-<p align="center">
-  <strong>Responsive portfolio built with Flutter, powered by Firebase — featuring my projects, journey, and modern UI design.</strong>
-</p>
-
 <p align="center">
   <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Framework-Flutter-blue?logo=flutter" /></a>
   <a href="https://firebase.google.com/"><img src="https://img.shields.io/badge/Backend-Firebase-orange?logo=firebase" /></a>
@@ -15,6 +10,11 @@
 <p align="center">
 <img width="100%" height="700" alt="image" src="https://github.com/user-attachments/assets/32371ff7-7eac-4c38-8021-81b2f4a48dc6" />
 </p>
+
+<p align="center">
+  <strong>Responsive portfolio built with Flutter, powered by Firebase — featuring my projects, journey, and modern UI design.</strong>
+</p>
+
 
 ---
 
