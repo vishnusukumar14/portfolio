@@ -1,4 +1,4 @@
-<h1 align="center">✨ Vishnu S — Portfolio</h1>
+<h1 align="center">Vishnu S — Portfolio</h1>
 
 
 
@@ -18,21 +18,21 @@
 
 ---
 
-## 🚀 About
+## About
 
 This is my **personal portfolio** — a fully responsive web app built with **Flutter** and **Firebase**.  
 It highlights my projects, technical skills, and career journey, and includes analytics and automated deployment via CI/CD.
 
-### 💡 Highlights
-- 🌈 **Beautiful, modern Flutter UI** with smooth animations  
-- ☁️ **Firebase backend** for hosting and visit tracking  
-- 🔄 **Automated CI/CD** with GitHub Actions  
-- 📱 **Responsive design** for desktop, tablet, and mobile  
-- 🧩 **Modular architecture** for easy updates and scalability  
+### Highlights
+- **Beautiful, modern Flutter UI** with smooth animations  
+- **Firebase backend** for hosting and visit tracking  
+- **Automated CI/CD** with GitHub Actions  
+- **Responsive design** for desktop, tablet, and mobile  
+- **Modular architecture** for easy updates and scalability  
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technologies |
 |--------|---------------|
@@ -46,9 +46,9 @@ It highlights my projects, technical skills, and career journey, and includes an
 ---
 
 
-## ⚙️ Getting Started
+## Getting Started
 
-### 1️⃣ Clone the repository
+### 1️ Clone the repository
 ```bash
 git clone https://github.com/vishnusukumar14/portfolio.git
 cd portfolio
