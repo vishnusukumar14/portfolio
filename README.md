@@ -15,48 +15,46 @@
   <img src="https://img.shields.io/badge/License-MIT-green" />
 </p>
 
-A **responsive Flutter portfolio** powered by **Firebase**, showcasing my projects, skills, and experience — with analytics, CI/CD automation, and modern UI design.
+---
+
+## 🚀 About
+
+This is my **personal portfolio** — a fully responsive web app built with **Flutter** and **Firebase**.  
+It highlights my projects, technical skills, and career journey, and includes analytics and automated deployment via CI/CD.
+
+### 💡 Highlights
+- 🌈 **Beautiful, modern Flutter UI** with smooth animations  
+- ☁️ **Firebase backend** for hosting and visit tracking  
+- 🔄 **Automated CI/CD** with GitHub Actions  
+- 📱 **Responsive design** for desktop, tablet, and mobile  
+- 🧩 **Modular architecture** for easy updates and scalability  
 
 ---
 
-## 🚀 About the Project
+## 🛠️ Tech Stack
 
-This project is my personal developer portfolio built using **Flutter** and deployed across web and mobile platforms.  
-It highlights my **projects, journey, and technologies**, while tracking visits and maintaining automated deployments via **CI/CD**.
-
-### ✨ Key Features
-- 💻 **Responsive Design** — Works beautifully on desktop, tablet, and mobile  
-- ☁️ **Firebase Integration** — For hosting, analytics, and data  
-- ⚙️ **CI/CD Pipeline** — Automated build and deployment  
-- 🧠 **Dynamic Project Showcase** — Easily update and scale project sections  
-- 🔒 **Secure & Optimized** — Following clean architecture and performance best practices
-
----
-
-## 🏗️ Tech Stack
-
-| Category | Technologies |
-|-----------|---------------|
-| **Framework** | Flutter |
+| Layer | Technologies |
+|--------|---------------|
+| **Frontend** | Flutter (Web + Mobile) |
 | **Backend / Hosting** | Firebase |
-| **Database** | Cloud Firestore |
-| **CI/CD** | GitHub Actions |
+| **Database** | Firestore |
 | **State Management** | Riverpod / Provider |
-| **UI Design** | Material 3 + Custom Animations |
+| **CI/CD** | GitHub Actions |
+| **Design** | Material 3 + Custom Animations |
 
 ---
 
-## ⚙️ Setup & Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/vishnus/portfolio.git
-   cd portfolio
 
-```flutter pub get
+---
 
+## ⚙️ Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/vishnus/portfolio.git
+cd portfolio
+flutter pub get
 flutter run -d chrome
-
 flutter build web
-
-
+firebase deploy (optional)
