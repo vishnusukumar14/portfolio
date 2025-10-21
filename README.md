@@ -38,7 +38,8 @@ It highlights my **projects, journey, and technologies**, while tracking visits 
    git clone https://github.com/vishnus/portfolio.git
    cd portfolio
 
-flutter pub get
+```flutter pub get
 
-flutter run -d chrome
+```flutter run -d chrome
+flutter build web
 
