@@ -1,4 +1,19 @@
-# 🌐 Vishnu's Portfolio
+<h1 align="center">✨ Vishnu S — Flutter Developer Portfolio</h1>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/vishnus/portfolio/main/assets/images/banner.png" alt="Portfolio Banner" width="100%" />
+</p>
+
+<p align="center">
+  <strong>Responsive portfolio built with Flutter, powered by Firebase — featuring my projects, journey, and modern UI design.</strong>
+</p>
+
+<p align="center">
+  <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Framework-Flutter-blue?logo=flutter" /></a>
+  <a href="https://firebase.google.com/"><img src="https://img.shields.io/badge/Backend-Firebase-orange?logo=firebase" /></a>
+  <a href="https://github.com/vishnus/portfolio/actions"><img src="https://img.shields.io/github/actions/workflow/status/vishnus/portfolio/deploy.yml?label=CI%2FCD&logo=github" /></a>
+  <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
 
 A **responsive Flutter portfolio** powered by **Firebase**, showcasing my projects, skills, and experience — with analytics, CI/CD automation, and modern UI design.
 
@@ -40,6 +55,8 @@ It highlights my **projects, journey, and technologies**, while tracking visits 
 
 ```flutter pub get
 
-```flutter run -d chrome
+flutter run -d chrome
+
 flutter build web
+
 
