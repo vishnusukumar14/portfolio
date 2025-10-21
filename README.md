@@ -1,16 +1,44 @@
-# portfolio_app
+# 🌐 Vishnu's Portfolio
 
-A clean and responsive portfolio website in Flutter to showcase my projects, skills, and developer profile.
+A **responsive Flutter portfolio** powered by **Firebase**, showcasing my projects, skills, and experience — with analytics, CI/CD automation, and modern UI design.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 About the Project
 
-A few resources to get you started if this is your first Flutter project:
+This project is my personal developer portfolio built using **Flutter** and deployed across web and mobile platforms.  
+It highlights my **projects, journey, and technologies**, while tracking visits and maintaining automated deployments via **CI/CD**.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### ✨ Key Features
+- 💻 **Responsive Design** — Works beautifully on desktop, tablet, and mobile  
+- ☁️ **Firebase Integration** — For hosting, analytics, and data  
+- ⚙️ **CI/CD Pipeline** — Automated build and deployment  
+- 🧠 **Dynamic Project Showcase** — Easily update and scale project sections  
+- 🔒 **Secure & Optimized** — Following clean architecture and performance best practices
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🏗️ Tech Stack
+
+| Category | Technologies |
+|-----------|---------------|
+| **Framework** | Flutter |
+| **Backend / Hosting** | Firebase |
+| **Database** | Cloud Firestore |
+| **CI/CD** | GitHub Actions |
+| **State Management** | Riverpod / Provider |
+| **UI Design** | Material 3 + Custom Animations |
+
+---
+
+## ⚙️ Setup & Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/vishnus/portfolio.git
+   cd portfolio
+
+flutter pub get
+
+flutter run -d chrome
+
