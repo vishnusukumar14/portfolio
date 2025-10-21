@@ -1,8 +1,5 @@
 <h1 align="center">✨ Vishnu S — Flutter Developer Portfolio</h1>
 
-<p align="center">
-<img width="100%" height="700" alt="image" src="https://github.com/user-attachments/assets/32371ff7-7eac-4c38-8021-81b2f4a48dc6" />
-</p>
 
 
 <p align="center">
@@ -14,6 +11,9 @@
   <a href="https://firebase.google.com/"><img src="https://img.shields.io/badge/Backend-Firebase-orange?logo=firebase" /></a>
   <a href="https://github.com/vishnus/portfolio/actions"><img src="https://img.shields.io/github/actions/workflow/status/vishnus/portfolio/deploy.yml?label=CI%2FCD&logo=github" /></a>
   <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
+<p align="center">
+<img width="100%" height="700" alt="image" src="https://github.com/user-attachments/assets/32371ff7-7eac-4c38-8021-81b2f4a48dc6" />
 </p>
 
 ---
