@@ -280,7 +280,7 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Timeline dot - fixed position
-          Container(
+          SizedBox(
             width: 64,
             child: Column(
               children: [
@@ -745,37 +745,21 @@ class _JourneySectionWidgetState extends State<JourneySectionWidget>
         color: const Color(0xFF00BCD4),
       ),
       JourneyStep(
-        period: 'Feb 2025 - June 2025',
-        title: 'Professional Experience',
+        period: '2025-Present',
+        title: 'Mastering Flutter',
         description:
-            'Software Developer Intern at Swagino\'s. Building cross-platform apps with Flutter, developing backend services Django, and implementing gRPC-based real-time communication systems.',
+        'Deepening expertise in Flutter by building real-world projects and exploring advanced topics like state management, animations, and cross-platform performance optimization. Continuously learning to craft beautiful, efficient, and scalable mobile experiences.',
         technologies: [
           'Flutter',
-          'Kotlin',
-          'Jetpack Compose',
-          'Django',
-          'gRPC',
-          'CI/CD',
-          'GitHub Actions',
-        ],
-        icon: Icons.work,
-        color: const Color(0xFF4CAF50),
-      ),
-      JourneyStep(
-        period: '2025-Present',
-        title: 'Continuous Growth',
-        description:
-            'Focused on clean architecture, scalable systems, and production-ready code. Exploring advanced topics in mobile development, backend optimization, and DevOps practices while contributing to the developer community.',
-        technologies: [
+          'Dart',
+          'State Management',
+          'Animations',
           'Clean Architecture',
-          'MVVM',
-          'Advanced Flutter',
-          'Cloud Architecture',
-          'Performance Optimization',
         ],
-        icon: Icons.auto_awesome,
-        color: const Color(0xFFE91E63),
+        icon: Icons.flutter_dash,
+        color: const Color(0xFF42A5F5),
       ),
+
     ];
   }
 }

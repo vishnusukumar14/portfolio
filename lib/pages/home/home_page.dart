@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/core/contents.dart';
-import 'package:portfolio_app/pages/home/sections/internships_section.dart';
+import 'package:portfolio_app/pages/home/sections/experience_section.dart';
 import 'package:portfolio_app/pages/home/sections/project_section.dart';
 import 'package:web/web.dart' as web;
 

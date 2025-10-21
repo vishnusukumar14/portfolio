@@ -22,8 +22,6 @@ class Contents {
 Hi, I’m a versatile software developer with a passion for building fast, reliable, and beautifully crafted digital experiences. I specialize in cross-platform development using Flutter, creating smooth, scalable apps backed by clean architecture and modern state management tools like Riverpod, Bloc, and Provider.
 I’ve worked on everything from academic projects to real-world apps during internships and freelance collaborations. I’ve integrated complex features like real-time messaging, secure authentication, and offline-first data persistence using tools such as REST APIs, Firebase, and MongoDB.
 
-In addition to Flutter, I bring hands-on experience in native Android development with Kotlin and Jetpack Compose, enabling me to optimize for platform-specific performance and deliver a seamless user experience.
-
 I also build backends using Python and Django, designing RESTful APIs with solid authentication systems and scalable data models. More recently, exploring Go (Golang), completing projects that focus on high-performance API services and concurrent processing.
 
 To ensure efficient development workflows, I leverage CI/CD pipelines with GitHub Actions, automating testing, builds, and deployments. This lets me ship with confidence and iterate quickly without compromising stability.
@@ -35,24 +33,18 @@ Whether I’m refining UI/UX details, debugging tough runtime issues, or optimiz
 
   static final experiences = [
     Experience(
-      title: "Software Developer Intern",
-      company: "Swagino's",
-      companyProfileUrl:
-          "https://www.linkedin.com/company/swaginos/posts/?feedView=all",
+      title: "Freelance Developer",
+      company: "Remote",
       duration: "Feb 2025 – June 2025",
       location: "Remote",
       highlights: [
         " Built cross-platform apps using Flutter, delivering responsive, high-performance UIs. ",
-        "Also developed native Android apps using Kotlin and Jetpack Compose for modern UI experiences.",
         " Designed and implemented backend services in Python (Django), applying clean architecture principles to build scalable, modular systems for production use.",
         "Utilized Firebase, FCM, and REST APIs for real-time features and backend integration.",
-        "Integrated gRPC-based backend services with Flutter clients to enable real-time messaging, synchronization, and efficient communication across distributed components.",
       ],
       techStack: [
         "Flutter",
         "Dart",
-        "Kotlin",
-        "Jetpack Compose",
         "Python",
         "Django",
         "Git Actions",
@@ -66,8 +58,6 @@ Whether I’m refining UI/UX details, debugging tough runtime issues, or optimiz
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
         "Dart":
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
-        "Kotlin":
-            "https://upload.wikimedia.org/wikipedia/commons/0/06/Kotlin_Icon.svg",
         "Python":
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
         "Git Actions": "https://logo.svgcdn.com/l/github-actions.svg",
@@ -78,50 +68,6 @@ Whether I’m refining UI/UX details, debugging tough runtime issues, or optimiz
         "Git":
             "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
         "gRPC": "https://logo.svgcdn.com/l/grpc.svg",
-        "Jetpack Compose":
-            "https://logo.svgcdn.com/d/jetpackcompose-original.svg",
-      },
-    ),
-    Experience(
-      title: "Product Development – Voigo (Hyperlocal Delivery Platform)",
-      company:
-          "Sri Jayachamarajendra College of Engineering, Mysuru, Karnataka",
-      companyProfileUrl:
-          "https://www.linkedin.com/school/sri-jayachamarajendra-college-of-engineering/",
-      duration: "Sep 2024 – Jan 2025",
-      location: "Onsite",
-      highlights: [
-        "Worked under faculty mentorship to develop Voigo, a hyperlocal platform connecting users with nearby kirana stores.",
-        "Bypassed traditional data storage using real-time order and inventory management for faster, more efficient operations",
-        "Built full-stack applications using Kotlin and Python Django; integrated Google Maps & live tracking.",
-        "Implemented pilot deployments, conducted usability testing, and improved system based on feedback.",
-      ],
-      techStack: [
-        "Kotlin",
-        "Java",
-        "Django",
-        "Firebase",
-        "MongoDB",
-        "JetBrains",
-        "REST APIs",
-        "Google Maps API",
-        "Git",
-      ],
-      techStackUrls: {
-        "Kotlin":
-            "https://upload.wikimedia.org/wikipedia/commons/0/06/Kotlin_Icon.svg",
-        "Java":
-            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-        "Django":
-            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
-        "Firebase":
-            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-        "JetBrains": "https://logo.svgcdn.com/l/jetbrains-space-icon.svg",
-        "MongoDB":
-            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-        "Git":
-            "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-        "Google Maps API": "https://logo.svgcdn.com/l/google-maps.svg",
       },
     ),
   ];
