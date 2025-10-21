@@ -1,7 +1,7 @@
 <h1 align="center">✨ Vishnu S — Flutter Developer Portfolio</h1>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/vishnus/portfolio/main/assets/images/banner.png" alt="Portfolio Banner" width="100%" />
+  <img src="<img width="1910" height="100" width="100%" alt="Portfolio Banner" src="https://github.com/user-attachments/assets/1bca68c5-e856-447f-aa00-afbf8e4097aa" />
 </p>
 
 <p align="center">
@@ -45,14 +45,11 @@ It highlights my projects, technical skills, and career journey, and includes an
 ---
 
 
-
----
-
 ## ⚙️ Getting Started
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/vishnus/portfolio.git
+git clone https://github.com/vishnusukumar14/portfolio.git
 cd portfolio
 flutter pub get
 flutter run -d chrome
