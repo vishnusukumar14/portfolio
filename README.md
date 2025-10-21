@@ -1,8 +1,9 @@
 <h1 align="center">✨ Vishnu S — Flutter Developer Portfolio</h1>
 
 <p align="center">
-  <img src="<img width="1910" height="100" alt="Portfolio Banner" src="https://github.com/user-attachments/assets/1bca68c5-e856-447f-aa00-afbf8e4097aa" />
+<img width="100%" height="700" alt="image" src="https://github.com/user-attachments/assets/32371ff7-7eac-4c38-8021-81b2f4a48dc6" />
 </p>
+
 
 <p align="center">
   <strong>Responsive portfolio built with Flutter, powered by Firebase — featuring my projects, journey, and modern UI design.</strong>
