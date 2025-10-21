@@ -94,7 +94,7 @@ class GitHubCardWidget extends StatelessWidget {
             const SizedBox(height: 8),
             _infoRow(
               icon: Icons.people,
-              text: '2 Followers • 0 Following',
+              text: '1 Followers • 0 Following',
               isDark: isDark,
               isResponsiveMobile: isResponsiveMobile,
             ),
@@ -118,6 +118,7 @@ class GitHubCardWidget extends StatelessWidget {
           color: isDark ? const Color(0xFF8B949E) : Colors.grey.shade600,
         ),
         const SizedBox(width: 6),
+
         Text(
           text,
           style: TextStyle(
