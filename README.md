@@ -1,7 +1,7 @@
 <h1 align="center">✨ Vishnu S — Flutter Developer Portfolio</h1>
 
 <p align="center">
-  <img src="<img width="1910" height="100" width="100%" alt="Portfolio Banner" src="https://github.com/user-attachments/assets/1bca68c5-e856-447f-aa00-afbf8e4097aa" />
+  <img src="<img width="1910" height="100" alt="Portfolio Banner" src="https://github.com/user-attachments/assets/1bca68c5-e856-447f-aa00-afbf8e4097aa" />
 </p>
 
 <p align="center">
