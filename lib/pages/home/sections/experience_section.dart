@@ -27,7 +27,7 @@ class InternshipsSectionWidget extends StatelessWidget {
                 context: context,
                 isMobile: isMobile,
                 icon: Icons.work,
-                title: "Internships",
+                title: "Experience",
                 customStyle: TypographyStyles.smallHeadlineStyle(
                   context,
                   isMobile,
