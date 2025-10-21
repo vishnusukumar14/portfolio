@@ -4,7 +4,7 @@
 <p align="center">
   <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Framework-Flutter-blue?logo=flutter" /></a>
   <a href="https://firebase.google.com/"><img src="https://img.shields.io/badge/Backend-Firebase-orange?logo=firebase" /></a>
-  <a href="https://github.com/vishnus/portfolio/actions"><img src="https://img.shields.io/github/actions/workflow/status/vishnus/portfolio/deploy.yml?label=CI%2FCD&logo=github" /></a>
+  <a href="https://github.com/vishnusukumar14/portfolio/actions"><img src="https://img.shields.io/github/actions/workflow/status/vishnusukumar14/portfolio/deploy.yml?label=CI%2FCD&logo=github" /></a>
   <img src="https://img.shields.io/badge/License-MIT-green" />
 </p>
 <p align="center">
