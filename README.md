@@ -1,4 +1,4 @@
-<h1 align="center">✨ Vishnu S — Flutter Developer Portfolio</h1>
+<h1 align="center">✨ Vishnu S — Portfolio</h1>
 
 
 
